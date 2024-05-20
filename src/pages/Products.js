@@ -15,8 +15,6 @@ export default function Products() {
 			.then(data => {
 				console.log(data);
 
-				
-
 				setProducts(data.products)
 
 			})

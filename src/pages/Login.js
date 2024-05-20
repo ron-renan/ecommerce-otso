@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 
                     // Prevents page redirection via form submission
                     e.preventDefault();
-                    fetch('http://localhost:4003/users/login',{
+                    fetch('http://localhost:4003/b3/users/login',{
 
                     method: 'POST',
                     headers: {
@@ -43,7 +43,7 @@ import Swal from 'sweetalert2';
                         Swal.fire({
                             title: "Login Successful",
                             icon: "success",
-                            text: "Welcome to Course Booking"
+                            text: "Welcome to E-Commerce App"
                         })
 
                     }
@@ -64,7 +64,7 @@ import Swal from 'sweetalert2';
 
 
             const retrieveUserDetails = (token) => {
-                fetch('http://localhost:4003/users/details',{
+                fetch('http://localhost:4003/b3/users/details',{
                 headers: {
                     "Authorization": `Bearer ${token}`
                     }
@@ -90,7 +90,7 @@ import Swal from 'sweetalert2';
             return (    
 
                     (user.id !== null) ?
-                        <Navigate to="/courses" />
+                        <Navigate to="/products/active" />
                     :
                     
                      <Form onSubmit={(e) => authenticate(e)}>

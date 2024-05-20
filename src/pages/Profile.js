@@ -19,7 +19,7 @@ export default function Profile(){
 
     useEffect(() => {
 
-        fetch(`http://localhost:4003/users/details`, {
+        fetch(`http://localhost:4003/b3/users/details`, {
             headers: {
                 Authorization: `Bearer ${ localStorage.getItem('token') }`
             }

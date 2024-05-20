@@ -20,7 +20,7 @@ export default function Register() {
 
                     function registerUser(e){
                     	e.preventDefault();
-                    	fetch('http://localhost:4003/users/register', {
+                    	fetch('http://localhost:4003/b3/users/register', {
                     		method: 'POST',
                     		headers: {
                     			"Content-Type": "application/json"
@@ -43,14 +43,14 @@ export default function Register() {
                     			setPassword('');
                     			setConfirmPassword('');
                     			alert("Registration Successful")
-                    		}else if (data.error === 'Email invalid'){
+                    		}else if (data.error === 'Invalid email'){
                     			alert("Email is invalid");
-                    		}else if(data.error === "Mobile number is invalid"){
-                    			alert("Mobile number is invalid");
+                    		}else if(data.error === "Mobile number must be at least 11 digits"){
+                    			alert("Mobile number must be at least 11 digitsd");
                     		}else if(data.error === "Password must be atleast 8 characters"){
                     			alert("Password must be atleast 8 characters");
                     		}else {
-                    			alert("Something went wrong")
+                    			alert("Internal server error")
                     		}
                     	})
                     }
