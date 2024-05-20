@@ -46,9 +46,9 @@ export default function Register() {
                     		}else if (data.error === 'Invalid email'){
                     			alert("Email is invalid");
                     		}else if(data.error === "Mobile number must be at least 11 digits"){
-                    			alert("Mobile number must be at least 11 digitsd");
-                    		}else if(data.error === "Password must be atleast 8 characters"){
-                    			alert("Password must be atleast 8 characters");
+                    			alert("Mobile number must be at least 11 digits");
+                    		}else if(data.error === "User with this email or mobile number already exists"){
+                    			alert("User with this email or mobile number already exists");
                     		}else {
                     			alert("Internal server error")
                     		}
