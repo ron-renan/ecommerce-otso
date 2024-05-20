@@ -1,5 +1,6 @@
 import { Form, Button} from 'react-bootstrap';
 import { useState, useEffect} from 'react';
+import Swal from 'sweetalert2';
 
 export default function Register() {
 
@@ -42,15 +43,38 @@ export default function Register() {
                     			setMobileNo('');
                     			setPassword('');
                     			setConfirmPassword('');
-                    			alert("Registration Successful")
+                    			
+						Swal.fire({
+                            title: "Registered Successfully",
+                            icon: "success",
+                            text: "Welcome to E-Commerce App"
+                        })
+
                     		}else if (data.error === 'Invalid email'){
-                    			alert("Email is invalid");
+                    			Swal.fire({
+                            title: "Invalid email",
+                            icon: "error",
+                            text: "Check your email and try again"
+                        })
+                    			
                     		}else if(data.error === "Mobile number must be at least 11 digits"){
-                    			alert("Mobile number must be at least 11 digits");
+                    			Swal.fire({
+                            title: "Mobile number must be at least 11 digits",
+                            icon: "error",
+                            text: "Check your mobile number and try again"
+                        })
                     		}else if(data.error === "User with this email or mobile number already exists"){
-                    			alert("User with this email or mobile number already exists");
+                    			Swal.fire({
+                            title: "User with this email or mobile number already exists",
+                            icon: "error",
+                            text: "Try logging in or register again"
+                        })
                     		}else {
-                    			alert("Internal server error")
+                    			Swal.fire({
+                            title: "Internal server error",
+                            icon: "error",
+                            text: "Internal server error"
+                        })
                     		}
                     	})
                     }
