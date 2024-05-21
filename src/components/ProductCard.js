@@ -37,7 +37,7 @@ export default function ProductCard({productProp}) {
                      <Card.Subtitle>Price:</Card.Subtitle>
                     <Card.Text>PhP {productProp.price}</Card.Text>
                      <Card.Text>Quantity: {quantity}</Card.Text>
-                    <Link className="btn btn-primary" to={`/products/${_id}`}>Details</Link>
+                    <Link className="btn btn-primary" to={`/products/${_id}`}>Add to Cart</Link>
       </Card.Body>
     </Card>
   );

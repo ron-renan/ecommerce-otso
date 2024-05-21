@@ -8,7 +8,7 @@ export default function Home() {
     const data = {
         title: "E-Commerce App",
         content: "Quality Products for All",
-        destination: "/products/active",
+        destination: "/products",
         label: "Add to cart!"
     }
 
