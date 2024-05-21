@@ -15,8 +15,7 @@ export default function Home() {
     return (
         <>
             <Banner data={data}/>
-            <FeaturedProducts />
-            
+            <FeaturedProducts />        
         </>
     );
 }

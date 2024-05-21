@@ -13,16 +13,17 @@ export default function AppNavbar() {
 
   return (
       <Navbar expand="lg" className="bg-light">
-          <Container fluid>
+          <Container>
             <Navbar.Brand as={Link} to="/">E-Commerce App</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ms-auto">
                 <Nav.Link as={NavLink} to="/" exact="true">Home</Nav.Link>
-                <Nav.Link as={NavLink} to="/products/active" exact="true">Products</Nav.Link>
-
+                <Nav.Link as={NavLink} to="/products" exact="true">Products</Nav.Link>
+                {(user.isAdmin) && 
+                <Nav.Link as={NavLink} to="/addProduct" exact="true" >Add Product</Nav.Link>
+                }
                 {(user.id !== null ) ? 
-                
                 <>
                     <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
                     <Nav.Link as={Link} to="/logout">Logout</Nav.Link>

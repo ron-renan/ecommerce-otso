@@ -1,4 +1,4 @@
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container } from 'react-bootstrap';
 import { useState, useEffect, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import UserContext from '../UserContext';
@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 
                     // Prevents page redirection via form submission
                     e.preventDefault();
-                    fetch('http://localhost:4003/users/login',{
+                    fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/users/login',{
 
                     method: 'POST',
                     headers: {
@@ -43,7 +43,7 @@ import Swal from 'sweetalert2';
                         Swal.fire({
                             title: "Login Successful",
                             icon: "success",
-                            text: "Welcome to Course Booking"
+                            text: "Welcome to our e-Commerce. Experience our affordable products"
                         })
 
                     }
@@ -64,7 +64,7 @@ import Swal from 'sweetalert2';
 
 
             const retrieveUserDetails = (token) => {
-                fetch('http://localhost:4003/users/details',{
+                fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/users/details',{
                 headers: {
                     "Authorization": `Bearer ${token}`
                     }
@@ -87,17 +87,21 @@ import Swal from 'sweetalert2';
                   
                 }, [email, password]);
 
+            function clearForm(){
+                setEmail('');
+                setPassword('');
+            }
             return (    
 
                     (user.id !== null) ?
-                        <Navigate to="/courses" />
+                        <Navigate to="/products" />
                     :
-                    
-                     <Form onSubmit={(e) => authenticate(e)}>
-                            <h1 className="my-5 text-center">Login</h1>
-                            <Form.Group controlId="userEmail">
+                    <Container className="d-flex justify-content-center align-items-center" style={{ height: '85vh' }}>   
+                     <Form onSubmit={(e) => authenticate(e)} className="w-50 border border-4 mt-5">
+                            <h1 className="text-center mt-4">Login</h1>
+                            <Form.Group controlId="userEmail" className="mt-5 px-5 fw-bolder lh-base fs-5 text-secondary">
                                 <Form.Label>Email address</Form.Label>
-                                <Form.Control 
+                                <Form.Control className="my-1 fs-5"
                                     type="email" 
                                     placeholder="Enter email"
                                     value={email}
@@ -106,26 +110,34 @@ import Swal from 'sweetalert2';
                                 />
                             </Form.Group>
 
-                            <Form.Group controlId="password">
+                            <Form.Group controlId="password" className="px-5 fw-bolder lh-base fs-5 text-secondary">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control 
+                                <Form.Control className="my-1 fs-5"
                                     type="password" 
                                     placeholder="Password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
+                                     autocomplete="current-password"
                                 />
                             </Form.Group>
-
-                            { isActive ? 
-                            <Button variant="primary" type="submit" id="submitBtn">
-                                Submit
-                            </Button>
-                            : 
-                            <Button variant="danger" type="submit" id="submitBtn" disabled>
-                                Submit
-                            </Button>
-                        }
-                        </Form>     
+                                <Button className="m-5"
+                                       variant={isActive ? "primary" : "danger"}
+                                       type="submit"
+                                       id="submitBtn"
+                                       disabled={!isActive}
+                                     >
+                                       Submit
+                                </Button>
+                                <Button className="d-inline"
+                                  variant="secondary"
+                                  type="button"
+                                  id="cancelBtn"
+                                  onClick={clearForm}
+                                >
+                                  Cancel
+                                </Button>
+                        </Form>
+                    </Container>     
             )
         }

@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
-
+import ProductSearch from './ProductSearch';
 
 export default function UserView({ productsData }) {
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+    const [products, setProducts] = useState([]);
+    const [searchActive, setSearchActive] = useState(false);  // State to manage visibility based on search
 
-  useEffect(() => {
-    const activeProducts = productsData.filter(product => product.isActive);
-    setProducts(activeProducts);
-    setFilteredProducts(activeProducts);
-  }, [productsData]);
+    useEffect(() => {
+        if (productsData && productsData.length > 0) {
+            const productsArr = productsData.map(product => {
+                return product.isActive ? <ProductCard productProp={product} key={product._id} /> : null;
+            });
+            setProducts(productsArr);
+        }
+    }, [productsData]);
 
-
-  return (
-    <>
-
-      <div className="product-list">
-   
-          <ProductCard courseProp={product} key={product._id} />
-     
-      </div>
-    </>
-
+    return (
+        <>
+            <ProductSearch onSearch={setSearchActive} />
+            {searchActive && <div>{products}</div>}
+        </>
+    );
 }
