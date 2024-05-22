@@ -1,96 +1,92 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { useState, useContext } from 'react';
+import { Button, Modal, Form } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
-const UpdateProfile = ({ updateDetails, profileData }) => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    mobileNo: ''
-  });
+import UserContext from '../UserContext';
+import Login from '../pages/Login';
 
-  useEffect(() => {
-  if (profileData) {
-      setFormData(profileData);
-    }
-  }, [profileData]);
+export default function UpdateProfile() {
+    const { user } = useContext(UserContext);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [editedDetails, setEditedDetails] = useState({});
+    const [message, setMessage] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('http://localhost:4000/users/profile', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify(formData)
-      });
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to update profile');
-      }
-      Swal.fire({
-        title: 'Success',
-        text: data.message,
-        icon: 'success',
-        confirmButtonText: 'OK'
-      });
-      updateDetails(formData); // Update parent component's state with new profile data
-    } catch (error) {
-      Swal.fire({
-        title: 'Error',
-        text: error.message || 'Failed to update profile',
-        icon: 'error',
-        confirmButtonText: 'OK'
-      });
-    }
-  };
+    const fetchProfile = async () => {
+        try {
+            const response = await fetch(`http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/users/profile`, {
+                method: 'PUT',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ editedDetails: editedDetails }),
+            });
 
-  return (
-    <div>
-      <h2>Update Profile</h2>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="firstName">
-          <Form.Label>First Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        <Form.Group controlId="lastName">
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        <Form.Group controlId="mobileNo">
-          <Form.Label>Mobile Number</Form.Label>
-          <Form.Control
-            type="text"
-            name="mobileNo"
-            value={formData.mobileNo}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        <Button className="my-5" variant="primary" type="submit">
-          Update Profile
-        </Button>
-      </Form>
-    </div>
-  );
-};
+            const result = await response.json();
+            if (response.ok) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'Profile updated successfully',
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: result.error || 'Failed to update profile',
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error: ' + error.message,
+            });
+        }
+    };
 
-export default UpdateProfile;
+    const handleEditProfile = () => {
+        fetchProfile();
+        setShowEditModal(false);
+    };
+
+    return (
+        (user.id === null)
+            ? <Login />
+            : <>
+                <Button onClick={() => setShowEditModal(true)}>Edit Profile</Button>
+
+                <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Edit Profile</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Group controlId="firstName">
+                                <Form.Label>First Name</Form.Label>
+                                <Form.Control type="text" value={editedDetails.firstName || ''} onChange={e => setEditedDetails({ ...editedDetails, firstName: e.target.value })} />
+                            </Form.Group>
+                            <Form.Group controlId="lastName">
+                                <Form.Label>Last Name</Form.Label>
+                                <Form.Control type="text" value={editedDetails.lastName || ''} onChange={e => setEditedDetails({ ...editedDetails, lastName: e.target.value })} />
+                            </Form.Group>
+                            <Form.Group controlId="email">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control type="email" value={editedDetails.email || ''} onChange={e => setEditedDetails({ ...editedDetails, email: e.target.value })} />
+                            </Form.Group>
+                            <Form.Group controlId="mobileNo">
+                                <Form.Label>Mobile No</Form.Label>
+                                <Form.Control type="text" value={editedDetails.mobileNo || ''} onChange={e => setEditedDetails({ ...editedDetails, mobileNo: e.target.value })} />
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setShowEditModal(false)}>Close</Button>
+                        <Button variant="primary" onClick={handleEditProfile}>Save Changes</Button>
+                    </Modal.Footer>
+                </Modal>
+                {message && <p>{message}</p>}
+            </>
+    );
+}

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import { Navigate } from 'react-router-dom';
 import UserContext from '../UserContext';
@@ -52,7 +52,7 @@ export default function Profile() {
 
     return (
         user.id === null 
-        ? <Navigate to="/courses" /> 
+        ? <Navigate to="/products" /> 
         : <>
             <Container fluid className="w-75">
             <Row>
@@ -68,17 +68,12 @@ export default function Profile() {
                 </Col>
             </Row>
 
-            <Row className="pt-4 mt-4">
-                <Col>
-                    <ResetPassword />
-                </Col>
-            </Row>
-
-            <Row className="pt-4 mt-4">
-                <Col>
-                    <UpdateProfile updateDetails={updateProfileDetails} profileData={details} />
-                </Col>
-            </Row>
+            <Button variant="dark">
+                <UpdateProfile/>
+            </Button>
+            <Button variant="dark">
+                <ResetPassword/>
+            </Button>
             </Container>
         </>
     );

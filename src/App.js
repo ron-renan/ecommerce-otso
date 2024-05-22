@@ -9,6 +9,7 @@ import Logout from './pages/Logout';
 import Profile from './pages/Profile';
 import Products from './pages/Products';
 import AddProduct from './pages/AddProduct';
+import ProductView from './pages/ProductView';
 
 import './App.css';
 import {UserProvider} from './UserContext';
@@ -38,7 +39,7 @@ function App() {
     <Routes>
       <Route path="/" element ={<Home />}/>      
       <Route path="/products" element ={<Products />}/>      
-      {/*<Route path="/products/:productId" element ={<ProductView />}/>      */}
+      <Route path="/products/:productId" element ={<ProductView />}/>      
       <Route path="/addProduct" element ={<AddProduct />}/>
       <Route path="/register" element ={<Register />}/>
       <Route path="/profile" element ={<Profile />}/>

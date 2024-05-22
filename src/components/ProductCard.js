@@ -20,7 +20,7 @@ export default function ProductCard({productProp}) {
             if (quantity > 0) {
                 setCount(count + 1);
                 console.log('Buyer: ' + count);
-                setQuantity(setQuantity - 1);
+                setQuantity(quantity - 1);
                 console.log('Quantity: ' + quantity)
             } else {
                 alert("Product is out of stock");
@@ -31,13 +31,16 @@ export default function ProductCard({productProp}) {
        return (
     <Card id="productComponent">
       <Card.Body>
-        <Card.Title>{productProp.name}</Card.Title>
+        <Card.Title>{name}</Card.Title>
         <Card.Subtitle>Description:</Card.Subtitle>
-                     <Card.Text>{productProp.description}</Card.Text>
+                     <Card.Text>{description}</Card.Text>
                      <Card.Subtitle>Price:</Card.Subtitle>
-                    <Card.Text>PhP {productProp.price}</Card.Text>
+                    <Card.Text>PhP {price}</Card.Text>
                      <Card.Text>Quantity: {quantity}</Card.Text>
                     <Link className="btn btn-primary" to={`/products/${_id}`}>Details</Link>
+                    <Button variant="primary" block="true" onClick={() => addToCart()}>
+                  Add To Cart
+                </Button>
       </Card.Body>
     </Card>
   );

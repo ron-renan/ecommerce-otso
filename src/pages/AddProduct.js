@@ -6,7 +6,7 @@ import {useNavigate, Navigate} from 'react-router-dom';
 
 export default function AddProduct(){
 
-	const { user, setUser } = useContext(UserContext);
+	const { user } = useContext(UserContext);
 
 	const txtnameRef = useRef(null);
 	const [ name, setName ] = useState("");
@@ -141,7 +141,7 @@ export default function AddProduct(){
 				        <Form.Label>Price:</Form.Label>
 				        <Form.Control
 				        type="number" 
-				        placeholder="Enter course price" 
+				        placeholder="Enter product price" 
 				        required
 				        value={price}
 					  	onChange={e => {setPrice(e.target.value)}}
@@ -151,7 +151,7 @@ export default function AddProduct(){
 					<Form.Group className="px-5">
 					  <Form.Label>Description:</Form.Label>
 					  <Form.Control as="textarea" rows={6}
-					  placeholder="Enter course description" 
+					  placeholder="Enter product description" 
 					  required
 					  value={description}
 					  onChange={e => {setDescription(e.target.value)}}

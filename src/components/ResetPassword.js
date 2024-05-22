@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Button, Modal, Form } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
-const ResetPassword = () => {
+export default function ResetPassword(){
   const [newPassword, setNewPassword] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -52,35 +54,47 @@ const ResetPassword = () => {
   };
 
   return (
-    <div>
-      <h2>Reset Password</h2>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="currentPassword">
-          <Form.Label>Current Password:</Form.Label>
-          <Form.Control
-            type="password"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-            required
-            style={{width: "45vw"}}
-          />
-        </Form.Group>
-        <Form.Group controlId="newPassword">
-          <Form.Label>New Password:</Form.Label>
-          <Form.Control
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            required
-            style={{width: "45vw"}}
-          />
-        </Form.Group>
-        <Button className="mt-4" variant="primary" type="submit">
-          Reset Password
-        </Button>
-      </Form>
-    </div>
+    <>
+      <Button variant="primary" onClick={() => setShowModal(true)}>
+        Change Password
+      </Button>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Change Password</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="currentPassword">
+              <Form.Label>Current Password</Form.Label>
+              <Form.Control
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="newPassword">
+              <Form.Label>New Password</Form.Label>
+              <Form.Control
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Reset Password
+            </Button>
+          </Form>
+          {message && <p>{message}</p>}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
-
-export default ResetPassword;
