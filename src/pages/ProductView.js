@@ -1,72 +1,44 @@
-import { useState, useEffect, useContext } from 'react';
-import { Container, Card, Button, Row, Col } from 'react-bootstrap';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import UserContext from '../UserContext';
+import { useState, useEffect } from 'react';
+import { Container, Card, Row, Col } from 'react-bootstrap';
+import { useParams, Link } from 'react-router-dom';
+import Error from './Error';
 
 export default function ProductView() {
-  const { user } = useContext(UserContext);
   const { productId } = useParams();
-  const navigate = useNavigate();
-
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState(0);
-
-  const addToCart = (productId) => {
-    fetch(`http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/cart/addToCart`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      },
-      body: JSON.stringify({
-        addedToCartProducts: [{ productId }],
-        totalPrice: price
-      })
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.error === 'Admin is forbidden') {
-          Swal.fire({
-            title: 'Admin add to cart error',
-            icon: 'error',
-            text: 'You are an administrator you may not add to cart.'
-          });
-        } else if (data.message === 'Successfully Added to Cart') {
-          Swal.fire({
-            title: 'Successfully added to cart',
-            icon: 'success',
-            text: 'You have successfully added this product to cart.'
-          });
-          navigate('/products');
-        } else {
-          Swal.fire({
-            title: 'Something went wrong',
-            icon: 'error',
-            text: 'Please try again.'
-          });
-        }
-      });
-  };
+  const [product, setProduct] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/products/${productId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data && data.product) {
-          setName(data.product.name);
-          setDescription(data.product.description);
-          setPrice(data.product.price);
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/products/${productId}`);
+        const data = await response.json();
+
+        if (response.ok) {
+          setProduct(data);
+        } else if (response.status === 404) {
+          setError('Product not found');
         } else {
-          navigate('/404');
+          setError('Failed to fetch product');
         }
-      })
-      .catch((err) => {
-        console.error(err);
-        navigate('/404');
-      });
-  }, [productId, navigate]);
+      } catch (err) {
+        setError('Failed to fetch product');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [productId]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div><Error message={error} /></div>;
+  }
 
   return (
     <Container className="mt-5">
@@ -74,20 +46,16 @@ export default function ProductView() {
         <Col lg={{ span: 6, offset: 3 }}>
           <Card>
             <Card.Body className="text-center">
-              <Card.Title>{name}</Card.Title>
+              <Card.Title>{product.name}</Card.Title>
               <Card.Subtitle>Description:</Card.Subtitle>
-              <Card.Text>{description}</Card.Text>
+              <Card.Text>{product.description}</Card.Text>
               <Card.Subtitle>Price:</Card.Subtitle>
-              <Card.Text>PhP {price}</Card.Text>
-              {user.id !== null ? (
-                <Button variant="primary" block="true" onClick={() => addToCart(productId)}>
-                  Add To Cart
-                </Button>
-              ) : (
-                <Link className="btn btn-danger btn-block" to="/login">
-                  Log in to Buy
-                </Link>
-              )}
+              <Card.Text>PhP {product.price}</Card.Text>
+              <Card.Subtitle>Active:</Card.Subtitle>
+              <Card.Text>{product.isActive ? 'Yes' : 'No'}</Card.Text>
+              <Link className="btn btn-danger btn-block" to="/login">
+                Login to Buy
+              </Link>
             </Card.Body>
           </Card>
         </Col>
