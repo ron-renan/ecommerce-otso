@@ -57,7 +57,7 @@ export default function ProductView() {
               <Card.Text>PhP {product.price}</Card.Text>
               {(!user || !user.id) ?
            
-              <Link className="btn btn-primary" to="/login">Add to Cart</Link>
+              <Link className="btn btn-primary" to="/login">Login to Shop</Link>
               :
                 <Link className="btn btn-primary" to={`/products/${productId}`}>details</Link>
               }
