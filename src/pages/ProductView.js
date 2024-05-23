@@ -1,13 +1,16 @@
-import { useState, useEffect } from 'react';
-import { Container, Card, Row, Col } from 'react-bootstrap';
-import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { Container, Card, Row, Col, Button } from 'react-bootstrap';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import Error from './Error';
+import UserContext from '../UserContext';
 
 export default function ProductView() {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const {user} = useContext(UserContext);
+
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -32,6 +35,7 @@ export default function ProductView() {
     fetchProduct();
   }, [productId]);
 
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -51,15 +55,18 @@ export default function ProductView() {
               <Card.Text>{product.description}</Card.Text>
               <Card.Subtitle>Price:</Card.Subtitle>
               <Card.Text>PhP {product.price}</Card.Text>
-              <Card.Subtitle>Active:</Card.Subtitle>
-              <Card.Text>{product.isActive ? 'Yes' : 'No'}</Card.Text>
-              <Link className="btn btn-danger btn-block" to="/login">
-                Login to Buy
-              </Link>
+              {(!user || !user.id) ?
+           
+              <Link className="btn btn-primary" to="/login">Add to Cart</Link>
+              :
+                <Link className="btn btn-primary" to={`/products/${productId}`}>details</Link>
+              }
+            
             </Card.Body>
           </Card>
         </Col>
       </Row>
     </Container>
+
   );
 }

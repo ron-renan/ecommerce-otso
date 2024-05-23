@@ -1,6 +1,6 @@
 import Banner from '../components/Banner';
-
 import FeaturedProducts from '../components/FeaturedProducts';
+
 
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
     const data = {
         title: "E-Commerce App",
         content: "Quality Products for All",
-        destination: "/products/active",
+        destination: "/login",
         label: "Add to cart!"
     }
 
