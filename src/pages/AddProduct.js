@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
 import {useNavigate, Navigate} from 'react-router-dom';
 
+
 export default function AddProduct(){
 
 	const { user, setUser } = useContext(UserContext);
@@ -119,11 +120,11 @@ export default function AddProduct(){
 				(!user.isAdmin) ?
 					<Navigate to="/products"/>
 					:
-			<Container fluid className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>				
-					<Form onSubmit={(e) => addProduct(e)} className="w-50 px-5 border border-4 mt-5">
-					<h1 className="my-5 text-center">Add Product</h1>
+			<Container fluid className="d-flex justify-content-center align-items-center" style={{ height: '95vh' }}>				
+					<Form onSubmit={(e) => addProduct(e)} className="w-40 px-5 border border-2 mt-5">
+					<h4 className="my-3 text-center text-success">Add Product</h4>
 
-					<Form.Group className="mt-5 px-5">
+					<Form.Group className="mt-5 px-5 text-success">
 					  <Form.Label>Name:</Form.Label>
 					  <Form.Control 
 					  ref={txtnameRef}
@@ -137,28 +138,28 @@ export default function AddProduct(){
 					  />
 					</Form.Group>
 
-					<Form.Group className="px-5">
+					<Form.Group className="px-5 text-success">
 				        <Form.Label>Price:</Form.Label>
 				        <Form.Control
 				        type="number" 
-				        placeholder="Enter course price" 
+				        placeholder="Enter product price" 
 				        required
 				        value={price}
 					  	onChange={e => {setPrice(e.target.value)}}
 				        />
 				    </Form.Group>
 
-					<Form.Group className="px-5">
+					<Form.Group className="px-5 text-success">
 					  <Form.Label>Description:</Form.Label>
 					  <Form.Control as="textarea" rows={6}
-					  placeholder="Enter course description" 
+					  placeholder="Enter product description" 
 					  required
 					  value={description}
 					  onChange={e => {setDescription(e.target.value)}}
 					  />
 					</Form.Group>
 					<Button className="m-5"
-					       variant={isActive ? "primary" : "danger"}
+					       variant="success"
 					       type="submit"
 					       id="submitBtn"
 					       disabled={!isActive}

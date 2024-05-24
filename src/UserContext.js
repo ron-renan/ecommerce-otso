@@ -1,13 +1,53 @@
-import React from 'react';
+// UserContext.js
+import React, { createContext, useState, useEffect } from 'react';
 
-// Creates a Context object
-        // A context object as the name states is a data type of an object that can be used to store information that can be shared to other components within the app
-        // The context object is a different approach to passing information between components and allows easier access by avoiding the use of prop-drilling
+const UserContext = createContext();
 
-const UserContext = React.createContext();
+export function UserProvider({ children }) {
+  const [user, setUser] = useState({ id: null, isAdmin: false });
+  const [cartCount, setCartCount] = useState();
 
-// The "Provider" component allows other components to consume/use the context object and supply the necessary information needed to the context object
+  const refreshCartCount = async () => {
+    try {
+      const response = await fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/cart', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
 
-export const UserProvider = UserContext.Provider;
+      if (!response.ok) {
+        throw new Error('Failed to fetch cart data');
+      }
+
+      const data = await response.json();
+      if (data) {
+        setCartCount(data.items.length);  
+      }
+      
+    } catch (error) {
+      console.error('Error fetching cart data:', error);
+    }
+  };
+
+  const unsetUser = () => {
+    setUser({ id: null, isAdmin: false });
+    setCartCount(0);
+    localStorage.clear();
+  };
+
+  useEffect(() => {
+    if (user.id) {
+      refreshCartCount();
+    }
+  }, [user]);
+
+  return (
+    <UserContext.Provider value={{ user, setUser, cartCount, setCartCount, refreshCartCount, unsetUser }}>
+      {children}
+    </UserContext.Provider>
+  );
+}
 
 export default UserContext;

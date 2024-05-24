@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 
 export default function PreviewProducts(props){
 
-	const { breakPoint, data } = props
+	const { breakPoint, data } = props;
 
 	const { _id, name, description, price } = data
+	console.log(props);
 
 	return(
 		<Col xs={12} md={ breakPoint }> 

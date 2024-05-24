@@ -9,6 +9,8 @@ import Logout from './pages/Logout';
 import Profile from './pages/Profile';
 import Products from './pages/Products';
 import AddProduct from './pages/AddProduct';
+import Cart from './pages/Cart';
+import PlaceOrder from './pages/PlaceOrder';
 
 import './App.css';
 import {UserProvider} from './UserContext';
@@ -38,7 +40,8 @@ function App() {
     <Routes>
       <Route path="/" element ={<Home />}/>      
       <Route path="/products" element ={<Products />}/>      
-      {/*<Route path="/products/:productId" element ={<ProductView />}/>      */}
+      <Route path="/cart" element ={<Cart />}/>      
+      <Route path="/order" element={<PlaceOrder />} />     
       <Route path="/addProduct" element ={<AddProduct />}/>
       <Route path="/register" element ={<Register />}/>
       <Route path="/profile" element ={<Profile />}/>

@@ -51,15 +51,15 @@ export default function EditProduct({ editingProduct, handleClose, setProducts }
             <Modal.Body>
                 <Form onSubmit={handleUpdateProduct}>
                     <Form.Group className="mb-3">
-                        <Form.Label>Name</Form.Label>
+                        <Form.Label className="fw-bolder">Name</Form.Label>
                         <Form.Control type="text" name="name" value={editedProduct.name || ''} onChange={handleInputChange} />
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Form.Label>Description</Form.Label>
+                        <Form.Label className="fw-bolder">Description</Form.Label>
                         <Form.Control type="text" name="description" value={editedProduct.description || ''} onChange={handleInputChange} />
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Form.Label>Price</Form.Label>
+                        <Form.Label className="fw-bolder">Price</Form.Label>
                         <Form.Control type="text" name="price" value={editedProduct.price || ''} onChange={handleInputChange} />
                     </Form.Group>
                 </Form>

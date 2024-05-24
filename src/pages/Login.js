@@ -97,11 +97,11 @@ import Swal from 'sweetalert2';
                         <Navigate to="/products" />
                     :
                     <Container className="d-flex justify-content-center align-items-center" style={{ height: '85vh' }}>   
-                     <Form onSubmit={(e) => authenticate(e)} className="w-50 border border-4 mt-5">
-                            <h1 className="text-center mt-4">Login</h1>
-                            <Form.Group controlId="userEmail" className="mt-5 px-5 fw-bolder lh-base fs-5 text-secondary">
+                     <Form onSubmit={(e) => authenticate(e)} className="w-40 border border-2 mt-5">
+                            <h3 className="text-center mt-3 text-success">Login</h3>
+                            <Form.Group controlId="userEmail" className="mt-3 px-5 fw-bolder lh-base fs-7 text-success">
                                 <Form.Label>Email address</Form.Label>
-                                <Form.Control className="my-1 fs-5"
+                                <Form.Control className="my-1 fs-7"
                                     type="email" 
                                     placeholder="Enter email"
                                     value={email}
@@ -110,9 +110,9 @@ import Swal from 'sweetalert2';
                                 />
                             </Form.Group>
 
-                            <Form.Group controlId="password" className="px-5 fw-bolder lh-base fs-5 text-secondary">
+                            <Form.Group controlId="password" className="px-5 fw-bolder lh-base fs-7 text-success">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control className="my-1 fs-5"
+                                <Form.Control className="my-1 fs-7"
                                     type="password" 
                                     placeholder="Password"
                                     value={password}
@@ -121,15 +121,15 @@ import Swal from 'sweetalert2';
                                      autocomplete="current-password"
                                 />
                             </Form.Group>
-                                <Button className="m-5"
-                                       variant={isActive ? "primary" : "danger"}
+                                <Button className="m-4 accent"
+                                       variant="success"
                                        type="submit"
                                        id="submitBtn"
                                        disabled={!isActive}
                                      >
                                        Submit
                                 </Button>
-                                <Button className="d-inline"
+                                <Button className="d-inline accent"
                                   variant="secondary"
                                   type="button"
                                   id="cancelBtn"

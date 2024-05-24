@@ -1,4 +1,4 @@
-import { Table, Button, Form, Modal } from 'react-bootstrap';
+import { Table, Button, Form, Modal, Container } from 'react-bootstrap';
 import { useState, useEffect, useContext } from 'react';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
@@ -62,9 +62,10 @@ export default function AdminView({ ProductsData }) {
 
     return (
         <>
-            <h1 className="text-center my-3">Admin Dashboard</h1>
-            <Table striped bordered>
-                <thead className="text-center py-5 fs-5">
+        <Container className="pt-5">
+            <h2 className="text-center my-5 text-success">Admin Dashboard</h2>
+            <Table striped borderless hover response="sm">
+                <thead className="text-center py-5 fs-7 admin-header">
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
@@ -90,7 +91,7 @@ export default function AdminView({ ProductsData }) {
                             <td>
                                 {user.id ? (
                                     <Form onSubmit={(e) => handleProductActivation(e, product._id, product.isActive)}>
-                                        <Button variant={product.isActive ? "danger" : "success"} type="submit">
+                                        <Button variant={product.isActive ? "secondary" : "success"} type="submit">
                                             {product.isActive ? "Archive" : "Activate"}
                                         </Button>
                                     </Form>
@@ -100,7 +101,7 @@ export default function AdminView({ ProductsData }) {
                     ))}
                 </tbody>
             </Table>
-            
+            </Container>
             <Modal show={showModal} onHide={handleClose}>
                 <EditProduct
                     editingProduct={editingProduct}

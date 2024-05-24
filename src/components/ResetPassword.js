@@ -52,7 +52,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <div>
+    <div className="text-success">
       <h2>Reset Password</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="currentPassword">
@@ -75,7 +75,7 @@ const ResetPassword = () => {
             style={{width: "45vw"}}
           />
         </Form.Group>
-        <Button className="mt-4" variant="primary" type="submit">
+        <Button className="mt-4" variant="success" type="submit">
           Reset Password
         </Button>
       </Form>

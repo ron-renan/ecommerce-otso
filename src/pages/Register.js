@@ -113,15 +113,15 @@ export default function Register() {
   }
 
   return (
-    <Container className="d-flex justify-content-center align-items-center">
-      <Form onSubmit={registerUser} className="w-50 border border-4 mt-2 px-5">
+    <Container className="d-flex justify-content-center align-items-center" style={{height: "100vh"}} >
+      <Form onSubmit={registerUser} className="w-40 border border-3 mt-2 px-3">
         <Row>
           <Col>
-            <h3 className="my-2 text-center">Register</h3>
+            <h3 className="my-2 text-center text-success">Register</h3>
             <Row>
               <Col md={1} ></Col>
               <Col md={10}>
-                <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-secondary">
+                <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-success">
               <Form.Label>First Name:</Form.Label>
               <Form.Control
                 type="text"
@@ -132,7 +132,7 @@ export default function Register() {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-secondary">
+            <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-success">
               <Form.Label>Last Name:</Form.Label>
               <Form.Control
                 type="text" 
@@ -142,7 +142,7 @@ export default function Register() {
                 onChange={e => setLastName(e.target.value)}
               />
             </Form.Group>
-            <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-secondary">
+            <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-success">
               <Form.Label>Email:</Form.Label>
               <Form.Control 
                 type="email"
@@ -154,7 +154,7 @@ export default function Register() {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-secondary">
+            <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-success">
               <Form.Label>Mobile No:</Form.Label>
               <Form.Control 
                 type="text"
@@ -166,7 +166,7 @@ export default function Register() {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-secondary">
+            <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-success">
               <Form.Label>Password:</Form.Label>
               <Form.Control 
                 type="password"
@@ -177,9 +177,10 @@ export default function Register() {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-secondary">
+            <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-success">
               <Form.Label>Confirm Password:</Form.Label>
-              <Form.Control
+              <Form.Control 
+                className="accent"
                 type="password"
                 placeholder="Confirm Password"
                 value={confirmPassword}
@@ -198,10 +199,10 @@ export default function Register() {
           <Col md={7} ></Col>
           <Col md={2}>
             <Button className="text-center"
-              variant={isActive ? "primary" : "danger"}
+              variant="success"
               type="submit"
               id="submitBtn"
-              className="mb-3 mr-5"
+              className="mb-3 mr-5 accent"
               disabled={!isActive}
             >
               Submit
@@ -209,6 +210,7 @@ export default function Register() {
           </Col>
           <Col md={3}>
             <Button
+              className="accent"
               variant="secondary"
               type="button"
               id="cancelBtn"

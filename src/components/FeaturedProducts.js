@@ -1,52 +1,44 @@
 import { useState, useEffect } from 'react';
 import { CardGroup } from 'react-bootstrap';
-import PreviewProducts from './PreviewProducts';
+import ProductCard from './ProductCard';
 
-export default function FeaturedProducts(){
+export default function FeaturedProducts() {
+    const [previews, setPreviews] = useState([]);
 
-	const [previews, setPreviews] = useState([])
+    useEffect(() => {
+        fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/products/active')
+            .then(res => res.json())
+            .then(data => {
+                const products = data.products;
+                if (products.length === 0) return;
 
-	useEffect(() => {
-		fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/products/active')
-		.then(res => res.json())
-		.then(data => {
-			console.log(data)
+                const numbers = new Set();
+                const featured = [];
 
-			const numbers = []
-			const featured = []
+                // Generate a unique set of random indices
+                while (numbers.size < Math.min(5, products.length)) {
+                    const randomNum = Math.floor(Math.random() * products.length);
+                    numbers.add(randomNum);
+                }
 
-			// This function generates a random number between 0 and the length of the data array (the fetched course data). It checks if the random number has already been added to the numbers array. If not, it adds the random number to the numbers array. If the random number already exists in the numbers array, it recursively calls itself to generate a new random number.
+                // Create featured product cards using the random indices
+                numbers.forEach(num => {
+                    featured.push(
+                        <ProductCard productProp={products[num]} key={products[num]._id} breakPoint={2} />
+                    );
+                });
 
-			const generateRandomNums = () => {
-				let randomNum = Math.floor(Math.random() * data.products.length)
+                setPreviews(featured);
+            })
+            .catch(err => console.error('Error fetching products:', err));
+    }, []);
 
-				if(numbers.indexOf(randomNum) === -1){
-					numbers.push(randomNum)
-				}else{
-					generateRandomNums()
-				}
-			}
-
-			for(let i = 0; i < 5; i++){
-				generateRandomNums()
-
-				featured.push(
-					<PreviewProducts data={data.products[numbers[i]]} key={data.products[numbers[i]]._id} breakPoint={2} />
-					)
-			}
-
-			setPreviews(featured)
-
-		})
-	}, [])
-
-	return(
-		<>
-			<h2 className="text-center">Featured Products</h2>
-			<CardGroup className="justify-content-center">
-			{previews}
-			</CardGroup>
-		</>
-
-	)
+    return (
+        <>
+            <h3 className="text-center mb-4 second">Featured Products</h3>
+            <CardGroup className="justify-content-center">
+                {previews}
+            </CardGroup>
+        </>
+    );
 }

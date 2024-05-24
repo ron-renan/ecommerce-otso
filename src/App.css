@@ -2,9 +2,41 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+/*  color: #007B43 !important;*/
 }
 .cardHighlights{
 
   min-height: 100%;
 
+}
+body {
+    background-color: #F2F2F2 !important; /* Change the color code as needed */
+}
+.bg-footer{
+  background-color: #f0f0f0 !important;
+}
+.mb-8{
+  margin-bottom: 8rem !important;
+}
+.mb-5{
+  margin-bottom: 5rem !important;
+}
+.cart-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 0.3em 0.6em;
+  font-size: 0.75em;
+}
+.w-40{
+  width: 40%;
+}
+.accent{
+  color: #FFD700 !important;
+}
+.second{
+  color: #007B43 !important;
+}
+.admin-header{
+  background-color: #007B43;
 }

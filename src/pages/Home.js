@@ -9,7 +9,7 @@ export default function Home() {
         title: "E-Commerce App",
         content: "Quality Products for All",
         destination: "/products",
-        label: "Add to cart!"
+        label: "More Products!"
     }
 
     return (

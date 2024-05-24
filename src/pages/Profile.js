@@ -54,9 +54,9 @@ export default function Profile() {
         user.id === null 
         ? <Navigate to="/courses" /> 
         : <>
-            <Container fluid className="w-75">
+            <Container fluid className="w-50" style={{marginTop: "3.8rem"}} >
             <Row>
-                <Col className="p-5 bg-primary text-white">
+                <Col className="p-5 bg-success text-white">
                     <h1 className="my-5">Profile</h1>
                     <h2 className="mt-3">{`${details.firstName} ${details.lastName}`}</h2>
                     <hr />

@@ -1,45 +1,59 @@
-import { Card, Button } from 'react-bootstrap';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Card, Button, Modal } from 'react-bootstrap';
+import { useState, useContext } from 'react';
+import AddToCart from './AddToCart';
+import ProductView from './ProductView';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import UserContext from '../UserContext';
 
+export default function ProductCard({ productProp }) {
+    
+    const { user } = useContext(UserContext);
+    const { _id, name, description, price } = productProp;
 
-export default function ProductCard({productProp}) {
+    const [quantity, setQuantity] = useState(10);
+    const [addToCart, setAddToCart] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
-        // console.log(props);
-        // console.log(typeof props)
+    const handleAddToCart = (product) => {
+        setAddToCart(product);
+        setShowModal(true);
+    };
 
-        const {_id, name, description, price} = productProp;
-        // Use the state hook for this component to be able to store its state
-        // States are used to keep track of information related to individual components
-        // Syntax
-            // const [getter, setter] = useState(initialGetterValue);
-        const [count, setCount] = useState(1)
-        const [quantity, setQuantity] = useState(10);
+    const handleClose = () => setShowModal(false);
 
-        function addToCart(){
-            if (quantity > 0) {
-                setCount(count + 1);
-                console.log('Buyer: ' + count);
-                setQuantity(setQuantity - 1);
-                console.log('Quantity: ' + quantity)
-            } else {
-                alert("Product is out of stock");
-            };
-        }
-   
+    return (
+        <>
+            <Card id="productComponent">
+                <Card.Body className="second">
+                    <Card.Title>{name}</Card.Title>
+                    <Card.Subtitle>Description:</Card.Subtitle>
+                    <Card.Text>{description}</Card.Text>
+                    <Card.Subtitle>Price:</Card.Subtitle>
+                    <Card.Text>PhP {price}</Card.Text>
+                    <Card.Text>Quantity: {quantity}</Card.Text>
+                    <Button onClick={() => handleAddToCart(productProp)} className="bg-success accent ms-2">
+                        Add To Cart <FontAwesomeIcon icon={faShoppingCart} className="yellow-icon" />
+                    </Button>
+                </Card.Body>
+            </Card>
 
-       return (
-    <Card id="productComponent">
-      <Card.Body>
-        <Card.Title>{productProp.name}</Card.Title>
-        <Card.Subtitle>Description:</Card.Subtitle>
-                     <Card.Text>{productProp.description}</Card.Text>
-                     <Card.Subtitle>Price:</Card.Subtitle>
-                    <Card.Text>PhP {productProp.price}</Card.Text>
-                     <Card.Text>Quantity: {quantity}</Card.Text>
-                    <Link className="btn btn-primary" to={`/products/${_id}`}>Add to Cart</Link>
-      </Card.Body>
-    </Card>
-  );
-
-   }
+            <Modal show={showModal} onHide={handleClose}>
+                {user.id !== null && !user.isAdmin ? (
+                    <AddToCart
+                        addToCartProduct={addToCart}
+                        handleClose={handleClose}
+                        qtyOnHand={quantity}
+                        showModal={showModal}
+                    />
+                ) : (
+                    <ProductView
+                        productview={addToCart}
+                        handleClose={handleClose}
+                        qtyOnHand={quantity}
+                    />
+                )}
+            </Modal>
+        </>
+    );
+}
