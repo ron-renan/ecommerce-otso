@@ -1,5 +1,4 @@
 import AdminView from '../components/AdminView';
-import UserView from '../components/UserView';
 import ProductList from '../components/ProductsList';
 import { useState, useEffect, useContext } from 'react';
 import UserContext from '../UserContext';

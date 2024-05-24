@@ -1,6 +1,6 @@
 import Banner from '../components/Banner';
-
 import FeaturedProducts from '../components/FeaturedProducts';
+
 
 
 export default function Home() {
@@ -10,6 +10,7 @@ export default function Home() {
         content: "Quality Products for All",
         destination: "/products",
         label: "More Products!"
+
     }
 
     return (

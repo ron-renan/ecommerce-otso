@@ -81,12 +81,15 @@ export default function Register() {
             });
         }
       } else {
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setMobileNo('');
-        setPassword('');
-        setConfirmPassword('');
+        // setFirstName('');
+        // setLastName('');
+        // setEmail('');
+        // setMobileNo('');
+        // setPassword('');
+        // setConfirmPassword('');
+
+        clearForm();
+        setUser();
 
         Swal.fire({
           title: "Registration Successful",

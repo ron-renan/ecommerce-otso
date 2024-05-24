@@ -7,7 +7,7 @@ import {useNavigate, Navigate} from 'react-router-dom';
 
 export default function AddProduct(){
 
-	const { user, setUser } = useContext(UserContext);
+	const { user } = useContext(UserContext);
 
 	const txtnameRef = useRef(null);
 	const [ name, setName ] = useState("");

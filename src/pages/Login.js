@@ -4,47 +4,39 @@ import { Navigate } from 'react-router-dom';
 import UserContext from '../UserContext';
 import Swal from 'sweetalert2';
 
-        export default function Login() {
+export default function Login() {
+    const {user, setUser } = useContext(UserContext);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');   
+    const [isActive, setIsActive] = useState(true);
 
-            const { user, setUser } = useContext(UserContext);
-
-            const [email, setEmail] = useState('');
-            const [password, setPassword] = useState('');   
-            const [isActive, setIsActive] = useState(true);
-
-            function authenticate(e) {
-
-                    // Prevents page redirection via form submission
-                    e.preventDefault();
-                    fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/users/login',{
-
-                    method: 'POST',
-                    headers: {
-                        "Content-Type": "application/json"
+    function authenticate(e) {
+        // Prevents page redirection via form submission
+        e.preventDefault();
+        fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/users/login',{
+            method: 'POST',
+            headers: {
+                    "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({
-        
-                        email: email,
-                        password: password
-        
-                    })
+            body: JSON.stringify({
+                email: email,
+                password: password
+                })
                 })
                 .then(res => res.json())
                 .then(data => {
 
-                    if(typeof data.access !== "undefined"){
-                        localStorage.setItem("token", data.access);
-
-                        // invoked the retrieveUserDetails function providing the token to be used to retrieve user details.
-                        retrieveUserDetails(data.access);
-
-                        // alert("Login successful");
+                if(typeof data.access !== "undefined"){
+                    localStorage.setItem("token", data.access);
+                    // invoked the retrieveUserDetails function providing the token to be used to retrieve user details.
+                    retrieveUserDetails(data.access);
+                    // alert("Login successful");
                         
-                        Swal.fire({
-                            title: "Login Successful",
-                            icon: "success",
-                            text: "Welcome to our e-Commerce. Experience our affordable products"
-                        })
+                    Swal.fire({
+                        title: "Login Successful",
+                        icon: "success",
+                        text: "Welcome to our e-Commerce. Experience our affordable products"
+                    })
 
                     }
                     else{
@@ -63,7 +55,7 @@ import Swal from 'sweetalert2';
             }
 
 
-            const retrieveUserDetails = (token) => {
+        const retrieveUserDetails = (token) => {
                 fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/users/details',{
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -73,9 +65,9 @@ import Swal from 'sweetalert2';
                 .then(data => {
                     console.log(data);
 
-                    setUser({
-                        id: data.user._id,
-                        isAdmin: data.user.isAdmin
+                setUser({
+                    id: data.user._id,
+                    isAdmin: data.user.isAdmin
                     })
 
                 });
@@ -83,9 +75,9 @@ import Swal from 'sweetalert2';
 
             useEffect(() => {
 
-                setIsActive(email !== '' && password !== '');
+            setIsActive(email !== '' && password !== '');
                   
-                }, [email, password]);
+            }, [email, password]);
 
             function clearForm(){
                 setEmail('');

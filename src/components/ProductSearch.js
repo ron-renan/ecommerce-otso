@@ -1,8 +1,8 @@
 import ProductCard from './ProductCard';
 import React, { useState, useEffect } from 'react';
-import { Form, Card, Container, Row, Col } from 'react-bootstrap';
+import { Form, Container, Row, Col } from 'react-bootstrap';
 
-const ProductSearch = ({ onSearch }) => {
+export default function ProductSearch({ onSearch }){
     const [searchTerm, setSearchTerm] = useState('');
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
@@ -88,4 +88,3 @@ const ProductSearch = ({ onSearch }) => {
     );
 };
 
-export default ProductSearch;
