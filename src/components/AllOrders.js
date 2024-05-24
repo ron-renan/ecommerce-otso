@@ -60,8 +60,7 @@ export default function AllOrders() {
                 <tr key={`${order._id}-${product.productId._id}`}>
                   <td>{order._id}</td>
                   <td>{order.userId._id}</td>
-                  <td>{product.productId.name}</td>
-                  
+                  <td>{product.productId.name}</td>                  
                   <td>{product.quantity}</td>
                   <td>{product.subTotal}</td>
                   <td>{order.totalPrice}</td>

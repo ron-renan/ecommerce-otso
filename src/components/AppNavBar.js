@@ -20,21 +20,24 @@ export default function AppNavbar() {
               <Nav className="ms-auto">
                 <Nav.Link as={NavLink} to="/" exact="true">Home</Nav.Link>
                 <Nav.Link as={NavLink} to="/products" exact="true">Products</Nav.Link>
-                {(user.isAdmin) && 
+                {user && user.isAdmin && (
+                <>
                 <Nav.Link as={NavLink} to="/addProduct" exact="true" >Add Product</Nav.Link>
-                }
-                {(user.id !== null ) ? 
+                <Nav.Link as={NavLink} to="/users" exact="true" >Users</Nav.Link>           
+                </>
+                )}
+                {user && user.id ? (
                 <>
                     <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
                     <Nav.Link as={NavLink} to="/order" exact="true">Orders</Nav.Link> 
                     <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
                 </>
-                : 
+                ): (
                 <>
                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
                     <Nav.Link as={Link} to="/register">Register</Nav.Link>
                 </>
-            }
+            )}
                 
               </Nav>
             </Navbar.Collapse>

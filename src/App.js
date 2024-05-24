@@ -1,4 +1,4 @@
-import {BrowserRouter as Router} from 'react-router-dom';
+import {BrowserRouter as Router } from 'react-router-dom';
 import{Route, Routes} from 'react-router-dom';
 import {useState, useEffect } from 'react';
 import AppNavBar from './components/AppNavBar';
@@ -12,7 +12,7 @@ import Products from './pages/Products';
 import ProductView from './pages/ProductView';
 import RetrieveOrders from './pages/RetrieveOrders';
 import AddProduct from './pages/AddProduct';
-
+import Users from './pages/Users';
 
 import './App.css';
 import {UserProvider} from './UserContext';
@@ -44,13 +44,14 @@ function App() {
       <Route path="/products" element ={<Products />}/>      
       <Route path="/order" element ={<RetrieveOrders />}/>      
       <Route path="/products/:productId" element ={<ProductView />}/>      
-      <Route path="/addProduct" element ={<AddProduct />}/>
+      <Route path="/addProduct" element ={<AddProduct />}/>   
       <Route path="/register" element ={<Register />}/>
       <Route path="/profile" element ={<Profile />}/>
       <Route path="/login" element ={<Login />}/> 
       <Route path="/logout" element ={<Logout />}/> 
       <Route path="/404" element ={<Error />}/>   
-      </Routes>
+      <Route path="/users" element ={<Users />}/>      
+    </Routes>
     </Container>
     </Router>
   </UserProvider>  
