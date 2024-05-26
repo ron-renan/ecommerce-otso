@@ -1,6 +1,4 @@
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
+import { Button, Form, Modal } from 'react-bootstrap';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 
@@ -47,10 +45,10 @@ export default function EditProduct({ editingProduct, handleClose, setProducts }
 
     return (
         <>
-            <Modal.Header closeButton>
+            <Modal.Header closeButton className="bg-success text-light">
                 <Modal.Title>Edit Product</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className="text-success">
                 <Form onSubmit={handleUpdateProduct}>
                     <Form.Group className="mb-3">
                         <Form.Label className="fw-bolder">Name</Form.Label>
@@ -68,7 +66,7 @@ export default function EditProduct({ editingProduct, handleClose, setProducts }
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>Close</Button>
-                <Button variant="primary" type="submit" onClick={handleUpdateProduct}>Submit</Button>
+                <Button variant="success" type="submit" onClick={handleUpdateProduct}>Submit</Button>
             </Modal.Footer>
         </>
     );

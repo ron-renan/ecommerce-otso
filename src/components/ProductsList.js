@@ -1,21 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import ProductCard from './ProductCard';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
+import {Container, Form, Row, Col} from 'react-bootstrap'
 
-export default function ProductsList({ProductsData}){
+export default  function ProductsList({ProductsData}){
 
 	const [filteredProducts, setFilteredProducts] = useState([]);
 	const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
-    const [allProducts, setAllProducts] = useState([]);
+    const [allProducts] = useState([]);
 
  	useEffect(() => {
 			setFilteredProducts(ProductsData.products);
-			setAllProducts(ProductsData.products);
+			// setAllProducts(ProductsData.products);
 	}, [ProductsData]);
 
 	 useEffect(() => {
@@ -27,13 +24,13 @@ export default function ProductsList({ProductsData}){
                    (!maxPrice || product.price <= parseFloat(maxPrice));
         });
         setFilteredProducts(filtered);
-        //onSearch(filtered.length > 0); // Call the onSearch prop to manage visibility
+        // onSearch(filtered.length > 0); // Call the onSearch prop to manage visibility
     };
         handleSearchChange();
     },[searchTerm, minPrice, maxPrice]);
 
-return (
-	<Container >	 
+	return (
+		 <Container>
 		 <Row className="border border-bordered">
 		 	<Col md={2} className="mt-3">
 		 		<Row>
@@ -76,13 +73,13 @@ return (
 		 	<Col md={10} className="mt-3">
             <Row className="mt-5">
                 {filteredProducts.map(product => (
-                    <Col className="wrapper" key={product._id} >
+                    <Col md={4} key={product._id} className="mt-2">
                         <ProductCard productProp={product} />
                     </Col>
                 ))}
             </Row>
-  		    </Col>    
+  		</Col>
 		</Row>   
-    </Container>   
+        </Container>
     );
 }

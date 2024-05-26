@@ -135,11 +135,11 @@ export default function PlaceOrder() {
     return (
        <Container className="mt-5">
                     <Row >
-                        <Col md={2} ></Col>
-                        <Col md={8} >
+                        <Col md={1} x={12}></Col>
+                        <Col md={10} x={12}>
                             <Row className="mt-5 mb-8">
-                                <Col md={2}></Col>
-                                <Col md={8} className="border border-2 bg-success text-light rounded-3">
+                                <Col md={1} x={12}></Col>
+                                <Col md={10} x={12} className="border border-2 bg-success text-light rounded-3">
                                     <>
                                     <h5 className="text-center my-4">Customer Order</h5>
                                     {orders.length > 0 ? (
@@ -157,20 +157,20 @@ export default function PlaceOrder() {
                                     <p className="py-2"></p>
                                     </>
                                 </Col>
-                                <Col md={2}></Col>
+                                <Col md={1} x={12}></Col>
                             </Row>
                         </Col>
-                        <Col md={2} ></Col>
+                        <Col md={1} x={12}></Col>
                     </Row>
                     
                     <Row className="fixed-bottom bg-success text-light py-1 pb-3">
                         <Col className="col-md-8 offset-md-2">
                             <Row className="border-secondary pt-3">
-                                <Col md={3}></Col>
-                                <Col md={4} className="text-start pe-5">
+                                <Col md={2} xs={12}></Col>
+                                <Col md={7} xs={6} className="text-end pe-5">
                                     <h6 className="pt-2">Total : {parseFloat(totalPrice).toLocaleString()} Php</h6>
                                 </Col>
-                                <Col md={5} className="text-start">
+                                <Col md={3} xs={6} className="text-start">
                                     <Button
                                         variant="warning"
                                         size="md"

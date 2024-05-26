@@ -40,3 +40,27 @@ body {
 .admin-header{
   background-color: #007B43;
 }
+Table {
+      width: 100%;
+      border-collapse: collapse !important;
+    }
+Table, td {
+      border: 1px solid gray !important;
+    }
+Table th{
+  background-color: #008B43 !important;
+  border: 1px solid white !important;
+}
+Table thead tr th{
+  color: white !important;
+  font-size: 1rem;
+}
+Table tr td{
+  color: green !important;
+}
+Table tr:nth-child(even) {
+  background-color: yellow !important;
+}
+Table tr:nth-child(odd) {
+  background-color: yellow !important; /* or any other color */
+}

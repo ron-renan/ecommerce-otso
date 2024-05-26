@@ -32,12 +32,14 @@ export default function AppNavbar() {
             <Nav.Link as={NavLink} to="/" exact="true" className="accent">Home</Nav.Link>
             <Nav.Link as={NavLink} to="/products" exact="true" className="accent">Products</Nav.Link>
             {user.isAdmin && (
+              <>
               <Nav.Link as={NavLink} to="/addProduct" exact="true" className="accent">Add Product</Nav.Link>
+              <Nav.Link as={Link} to="/users" className="accent">Users</Nav.Link>
+              </>
             )}
             {user.id ? (
               <>
                 <Nav.Link as={Link} to="/order" className="accent">Order</Nav.Link>
-                <Nav.Link as={Link} to="/users" className="accent">Users</Nav.Link>
                 <Nav.Link as={Link} to="/profile" className="accent">Profile</Nav.Link>
                 <Nav.Link as={Link} to="/logout" className="accent">Logout</Nav.Link>
               </>

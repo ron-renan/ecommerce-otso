@@ -62,17 +62,17 @@ export default function AdminView({ ProductsData }) {
 
     return (
         <>
-        <Container className="pt-5">
+        <Container fluid className="pt-5">
             <h2 className="text-center my-5 text-success">Admin Dashboard</h2>
-            <Table striped borderless hover response="sm">
+            <Table fluid striped hover response="sm">
                 <thead className="text-center py-5 fs-7 admin-header">
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Availability</th>
-                        <th colSpan={2}>Action</th>
+                        <th className="py-3 text-light">ID</th>
+                        <th className="py-3 text-light">Name</th>
+                        <th className="py-3 text-light">Description</th>
+                        <th className="py-3 text-light">Price</th>
+                        <th className="py-3 text-light">Availability</th>
+                        <th colSpan={2} className="py-3 text-light">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -86,12 +86,12 @@ export default function AdminView({ ProductsData }) {
                                 {product.isActive ? "Available" : "Unavailable"}
                             </td>
                             <td>
-                                <Button onClick={() => handleEditClick(product)} className="bg-primary text-light mx-3">Edit</Button>
+                                <Button onClick={() => handleEditClick(product)} className="bg-warning text-dark mx-3">Edit</Button>
                             </td>
                             <td>
                                 {user.id ? (
                                     <Form onSubmit={(e) => handleProductActivation(e, product._id, product.isActive)}>
-                                        <Button variant={product.isActive ? "secondary" : "success"} type="submit">
+                                        <Button variant={product.isActive ? "success" : "danger"} type="submit">
                                             {product.isActive ? "Archive" : "Activate"}
                                         </Button>
                                     </Form>

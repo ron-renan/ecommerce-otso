@@ -55,17 +55,17 @@ export default function PendingOrder({pendingData}){
 	return (
 		<Container className="mt-4">
 		    <Row>
-		        <Col md={2}></Col>
-		        <Col md={8}>
+		        <Col md={1} x={12} ></Col>
+		        <Col md={10} x={12}>
 		            <Row className="mt-5 mb-8">
-		                <Col md={2}></Col>
-		                <Col md={8} className="border border-2 bg-light text-success rounded-3">
+		                <Col md={1} x={12}></Col>
+		                <Col md={10} x={12} className="border border-2 bg-light text-success rounded-3">
 		                    <h4 className="text-center mt-4 mb-5">Order Status</h4>
 		                    {pendingData.length > 0 ? (
 		                        pendingData.map(item => (
 		                            <Row key={item.orderedOn} className="align-items-center my-2 border-bottom ms-3">
-		                                <Col md={1} className="text-center"></Col>
-		                                <Col md={10}>
+		                                <Col md={1} x={12} className="text-center"></Col>
+		                                <Col md={10} x={12}>
 		                                    {item.productsOrdered.map((orderProduct, index) => (
 		                                        <div key={`${orderProduct._id}-${index}`} className="mb-3">
 		                                        	<p className="fw-normal"><span className="fw-bolder pe-2">Order ID:</span> {item._id}</p>
@@ -104,10 +104,10 @@ export default function PendingOrder({pendingData}){
 		                    )}
 		 
 		                </Col>
-		                <Col md={2}></Col>
+		                <Col md={1} x={12}></Col>
 		            </Row>
 		        </Col>
-		        <Col md={2}></Col>
+		        <Col md={1} x={12}></Col>
 		    </Row>
 		</Container>
 	)

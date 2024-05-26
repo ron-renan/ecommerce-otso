@@ -1,9 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
-import Table from 'react-bootstrap/Table';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Table, Form, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import SetUserAsAdmin from '../components/SetUserAsAdmin';
 import UserContext from '../UserContext';
@@ -53,7 +49,7 @@ export default function Users() {
   );
 
   return (
-    <Container className="mt-3">
+    <Container className="mt-5">
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
           <Form.Control
@@ -75,7 +71,7 @@ export default function Users() {
               <th>Email</th>
               <th>Mobile Number</th>
               <th>Admin</th>
-              <th>Action</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>

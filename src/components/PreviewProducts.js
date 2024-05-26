@@ -1,6 +1,5 @@
 import React from 'react';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
+import { Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export default function PreviewProducts(props){
@@ -12,17 +11,19 @@ export default function PreviewProducts(props){
 
 	return(
 		<Col xs={12} md={ breakPoint }> 
-			<Card className="cardHighlights mx-2">
+			<Card className="cardHighlight mx-2">
 		      <Card.Body>
 		        <Card.Title className="text-center">
 		        <Link to={`/products/${ _id}`}>{ name }</Link>
 		        </Card.Title>
 		        <Card.Text>
 		          { description }
-		        </Card.Text>	        
+		        </Card.Text>
+		        
 		      </Card.Body>
 		      <Card.Footer>
-		      	<h5 className="text-center">&#8369; { price }</h5>
+		      	<h5 className="text-center">{ price }</h5>
+		      	<Link className="btn btn-primary d-block" to={`/products/${ _id}`}>Details</Link>
 		      </Card.Footer>
 		    </Card>
 		</Col>

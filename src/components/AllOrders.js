@@ -1,17 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
-import Container from 'react-bootstrap/Container';
-import Table from 'react-bootstrap/Table';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Form from 'react-bootstrap/Form';
-
+import { Table } from 'react-bootstrap';
 import UserContext from '../UserContext';
 
 export default function AllOrders() {
   const { user } = useContext(UserContext);
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState(''); // State for the search term
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -40,36 +34,18 @@ export default function AllOrders() {
 
     fetchOrders();
   }, [user]);
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-  // Filter orders based on search term
-  const filteredOrders = orders.filter(order =>
-    `${order._id} ${order.userId._id}`.includes(searchTerm)
-  );
 
   return (
-   <Container className="mt-2"> 
-      <Row>
-        <Col md={{ span: 6, offset: 3 }}>
-          <Form.Control
-            type="text"
-            placeholder="Search by User ID or Order ID"
-            value={searchTerm}
-            onChange={handleSearchChange}
-          />
-        </Col>
-      </Row>
-      <h2> All User Orders</h2>
+    <div className="mt-5 pt-1">
+      <h4 className="my-3 text-success">All User Orders</h4>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <Table striped bordered responsive className="mt-3">
+        <Table striped bordered hover>
           <thead>
             <tr>
               <th>Order ID</th>
-              <th>User ID</th>
-              <th>Product ID</th>
+              <th>User</th>
               <th>Product Name</th>
               <th>Quantity</th>
               <th>Subtotal</th>
@@ -79,12 +55,11 @@ export default function AllOrders() {
             </tr>
           </thead>
           <tbody>
-            {filteredOrders.map((order) =>
-             order.productsOrdered.map((product) => (
+            {orders.map((order) =>
+              order.productsOrdered.map((product) => (
                 <tr key={`${order._id}-${product.productId._id}`}>
                   <td>{order._id}</td>
                   <td>{order.userId._id}</td>
-                  <td>{product.productId._id}</td>
                   <td>{product.productId.name}</td>                  
                   <td>{product.quantity}</td>
                   <td>{product.subTotal}</td>
@@ -97,6 +72,6 @@ export default function AllOrders() {
           </tbody>
         </Table>
       )}
-  </Container>
+    </div>
   );
 }

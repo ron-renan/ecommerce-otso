@@ -221,16 +221,16 @@
         return (
             <Container className="mt-5">
                 <Row>
-                    <Col md={2}></Col>
-                    <Col md={8}>
+                    <Col md={1} x={12} ></Col>
+                    <Col md={10} x={12} >
                     <Row className="mt-5 mb-8">
-                        <Col md={2}></Col>
-                        <Col md={8} className="border border-2 bg-light text-success rounded-3">
+                        <Col md={1} x={12}></Col>
+                        <Col md={10} x={12} className="border border-2 bg-light text-success rounded-3">
                             <h5 className="text-center my-3">Customer Cart</h5>
                             {mappedCartItems.length > 0 ? (
                                 mappedCartItems.map(item => (
                                     <Row key={item.productId} className="align-items-center my-2 border-bottom ms-3">
-                                        <Col md={2} className="text-center">
+                                        <Col md={2} x={12} className="text-center pb-3">
                                             <Form.Check
                                                 type="checkbox"
                                                 checked={!!selectedItems[item.productId]}
@@ -238,12 +238,12 @@
                                                 style={{ transform: "scale(1.5)" }}
                                             />
                                         </Col>
-                                        <Col md={6}>
+                                        <Col md={6} x={12} className="text-center">
                                             <h6>{item.productName}</h6>
                                             <p>{item.productDescription}</p>
                                             <p>Subtotal: {parseFloat(item.subTotal).toLocaleString()} Php</p>
-                                            <Form.Group className="d-flex align-items-center mb-3">
-                                                <Form.Label className="me-2">Quantity</Form.Label>
+                                            <Form.Group className="d-flex align-items-md-center mb-3 text-center">
+                                                <Form.Label className="me-2 text-center">Quantity</Form.Label>
                                                 <Form.Control
                                                     type="number"
                                                     style={{ width: "4rem", height: "1.8rem", fontSize: "1rem" }}
@@ -266,7 +266,7 @@
                                                 </Button>
                                             </Form.Group>
                                         </Col>
-                                        <Col md={4} className="text-center">
+                                        <Col md={4} x={12}className="text-center py-4">
                                             <Button 
                                             variant="warning"
                                             onClick={() => removeFromCart(item.productId)}
@@ -280,20 +280,20 @@
                                 <p>Your cart is empty.</p>
                             )}
                         </Col>
-                        <Col md={2}></Col>
+                        <Col md={1} x={12}></Col>
                     </Row>        
 
                     </Col>
-                    <Col md={2}></Col>
+                    <Col md={1} x={12}></Col>
                 </Row>
                 
                 <Row className="fixed-bottom bg-success py-1 text-light">
-                    <Col md={2}></Col>
-                    <Col md={8}>
+                    <Col md={1} x={12}></Col>
+                    <Col md={10} x={12}>
                         <Row>
                             <Col className="text-center">
                                 <Row className=" border-secondary pt-1">
-                                    <Col md={3} className="text-end pe-4 pt-2">
+                                    <Col md={2} x={12} className="text-center text-md-end pe-4 pt-2">
                                             <Form.Check
                                                 type="checkbox"
                                                 checked={selectAll}
@@ -301,10 +301,10 @@
                                                 style={{ transform: "scale(1.5)" }}
                                             />
                                         </Col>
-                                    <Col md={4} className="text-center pt-2">
+                                    <Col md={4} x={6} className="text-center pt-1">
                                         <h5 className="accent">Total: {parseFloat(totalPrice).toLocaleString()} Php</h5>
                                     </Col>
-                                    <Col md={5} className="text-start ps-5">
+                                    <Col md={6} x={6} className="text-center ">
                                         <Button
                                             variant="warning"
                                             onClick={placeOrder}
@@ -317,6 +317,7 @@
                             </Col>
                         </Row>
                     </Col>
+                    <Col md={1} ></Col>
                 </Row>
             </Container>
         );
