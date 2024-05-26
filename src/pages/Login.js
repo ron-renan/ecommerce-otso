@@ -89,7 +89,7 @@ export default function Login() {
                         <Navigate to="/products" />
                     :
                     <Container className="d-flex justify-content-center align-items-center" style={{ height: '85vh' }}>   
-                     <Form onSubmit={(e) => authenticate(e)} className="w-40 border border-2 mt-5">
+                     <Form onSubmit={(e) => authenticate(e)} className="w-40 border border-1 border-success rounded-2 mt-5">
                             <h3 className="text-center mt-3 text-success">Login</h3>
                             <Form.Group controlId="userEmail" className="mt-3 px-5 fw-bolder lh-base fs-7 text-success">
                                 <Form.Label>Email address</Form.Label>
@@ -113,7 +113,7 @@ export default function Login() {
                                      autocomplete="current-password"
                                 />
                             </Form.Group>
-                                <Button className="m-4 accent"
+                                <Button className="m-4 ms-5 accent"
                                        variant="success"
                                        type="submit"
                                        id="submitBtn"

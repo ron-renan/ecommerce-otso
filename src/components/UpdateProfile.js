@@ -52,10 +52,10 @@ const UpdateProfile = ({ updateDetails, profileData }) => {
   };
 
   return (
-    <div>
-      <h4 className="text-success">Update Profile</h4>
+    <div className="mx-4 text-light">
+      <h4>Update Profile</h4>
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="firstName" className="text-success">
+        <Form.Group controlId="firstName">
           <Form.Label>First Name</Form.Label>
           <Form.Control
             type="text"
@@ -65,7 +65,7 @@ const UpdateProfile = ({ updateDetails, profileData }) => {
             required
           />
         </Form.Group>
-        <Form.Group controlId="lastName" className="text-success">
+        <Form.Group controlId="lastName">
           <Form.Label>Last Name</Form.Label>
           <Form.Control
             type="text"
@@ -75,7 +75,7 @@ const UpdateProfile = ({ updateDetails, profileData }) => {
             required
           />
         </Form.Group>
-        <Form.Group controlId="mobileNo" className="text-success">
+        <Form.Group controlId="mobileNo">
           <Form.Label>Mobile Number</Form.Label>
           <Form.Control
             type="text"
@@ -85,7 +85,7 @@ const UpdateProfile = ({ updateDetails, profileData }) => {
             required
           />
         </Form.Group>
-        <Button className="my-5" variant="success" type="submit">
+        <Button className="mt-4" variant="warning" type="submit">
           Update Profile
         </Button>
       </Form>

@@ -13,6 +13,7 @@ import ProductView from './pages/ProductView';
 import RetrieveOrders from './pages/RetrieveOrders';
 import AddProduct from './pages/AddProduct';
 import Cart from './pages/Cart';
+import Order from './pages/Order';
 import PlaceOrder from './pages/PlaceOrder';
 import Users from './pages/Users';
 
@@ -45,16 +46,17 @@ function App() {
       <Route path="/" element ={<Home />}/>      
       <Route path="/products" element ={<Products />}/>      
       <Route path="/cart" element ={<Cart />}/>      
-      <Route path="/order" element={<PlaceOrder />} />     
+      <Route path="/myorder" element={<PlaceOrder />} />     
+      <Route path="/order" element={<Order />} />     
       <Route path="/addProduct" element ={<AddProduct />}/>
-      <Route path="/order/my-orders" element ={<RetrieveOrders />}/>      
+      {/*<Route path="/order/my-orders" element ={<RetrieveOrders />}/>      */}
       <Route path="/products/:productId" element ={<ProductView />}/>      
       <Route path="/addProduct" element ={<AddProduct />}/>   
       <Route path="/register" element ={<Register />}/>
       <Route path="/profile" element ={<Profile />}/>
       <Route path="/login" element ={<Login />}/> 
       <Route path="/logout" element ={<Logout />}/> 
-      <Route path="/404" element ={<Error />}/>   
+      <Route path="*" element ={<Error />}/>   
       <Route path="/users" element ={<Users />}/>      
     </Routes>
     </Container>

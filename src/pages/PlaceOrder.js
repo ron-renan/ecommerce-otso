@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
@@ -120,52 +120,68 @@ export default function PlaceOrder() {
         //refreshCartCount();
         setCartCount(unselected.length);
 
-        navigate('/products'); // Navigate to a thank you page or order summary
+        navigate('/'); // Navigate to a thank you page or order summary
     } catch (error) {
         console.error('Error placing order:', error);
     }
 };
 
+// Redirect if user is not logged in or is an admin
+    if (!user.id || user.isAdmin) {
+        return <Navigate to="/" />;
+    }
+
 
     return (
-        <Container>
-            <Row className="mt-5 mb-5">
-                <Col md={4}></Col>
-                <Col md={4} className="mt-5 text-success">
-                    <h4 className="text-center mt-2 mb-5">Customer's Order</h4>
-                    {orders.length > 0 ? (
-                        orders.map((order, index) => (
-                            <div key={index} className="mt-2">
-                                <h6>{order.productName}</h6>
-                                <p>Quantity: {order.quantity}</p>
-                                <p><span className="fw-bolder text-success">Subtotal :</span> {order.subTotal} Php</p>
-                            </div>
-                        ))
-                    ) : (
-                        <p>No items selected.</p>
-                    )}
-                </Col>
-                <Col md={4}></Col>
-            </Row>
-            <Row className="fixed-bottom bg-light py-3">
-                <Col className="col-md-8 offset-md-2">
-                    <Row className="border-secondary pt-3">
-                        <Col md={3}></Col>
-                        <Col md={4} className="text-start pe-5">
-                            <h5 className="text-success">Total : {parseFloat(totalPrice).toLocaleString()} Php</h5>
+       <Container className="mt-5">
+                    <Row >
+                        <Col md={2} ></Col>
+                        <Col md={8} >
+                            <Row className="mt-5 mb-8">
+                                <Col md={2}></Col>
+                                <Col md={8} className="border border-2 bg-success text-light rounded-3">
+                                    <>
+                                    <h5 className="text-center my-4">Customer Order</h5>
+                                    {orders.length > 0 ? (
+                                        orders.map((order, index) => (
+                                            <div key={index} className="mt-2 border rounded-2 ps-5 py-3 bg-light text-success">
+                                                <h6>{order.productName}</h6>
+                                                <p>{order.productDescription}</p>
+                                                <p>Quantity: {order.quantity}</p>
+                                                <p><span className="fw-bolder text-success">Subtotal :</span> {order.subTotal} Php</p>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p>No items selected.</p>
+                                    )}
+                                    <p className="py-2"></p>
+                                    </>
+                                </Col>
+                                <Col md={2}></Col>
+                            </Row>
                         </Col>
-                        <Col md={5} className="text-start">
-                            <Button
-                                variant="success"
-                                size="md"
-                                onClick={placeOrder}
-                            >
-                                Place Order
-                            </Button>
+                        <Col md={2} ></Col>
+                    </Row>
+                    
+                    <Row className="fixed-bottom bg-success text-light py-1 pb-3">
+                        <Col className="col-md-8 offset-md-2">
+                            <Row className="border-secondary pt-3">
+                                <Col md={3}></Col>
+                                <Col md={4} className="text-start pe-5">
+                                    <h6 className="pt-2">Total : {parseFloat(totalPrice).toLocaleString()} Php</h6>
+                                </Col>
+                                <Col md={5} className="text-start">
+                                    <Button
+                                        variant="warning"
+                                        size="md"
+                                        onClick={placeOrder}
+                                    >
+                                        Place Order
+                                    </Button>
+                                </Col>
+                            </Row>
                         </Col>
                     </Row>
-                </Col>
-            </Row>
-        </Container>
+                </Container>
     );
 }

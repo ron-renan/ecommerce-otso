@@ -121,10 +121,10 @@ export default function AddProduct(){
 					<Navigate to="/products"/>
 					:
 			<Container fluid className="d-flex justify-content-center align-items-center" style={{ height: '95vh' }}>				
-					<Form onSubmit={(e) => addProduct(e)} className="w-40 px-5 border border-2 mt-5">
+					<Form onSubmit={(e) => addProduct(e)} className="w-75 px-3 border border-2 mt-5">
 					<h4 className="my-3 text-center text-success">Add Product</h4>
 
-					<Form.Group className="mt-5 px-5 text-success">
+					<Form.Group className="mt-3 px-5 text-success">
 					  <Form.Label>Name:</Form.Label>
 					  <Form.Control 
 					  ref={txtnameRef}
@@ -158,7 +158,7 @@ export default function AddProduct(){
 					  onChange={e => {setDescription(e.target.value)}}
 					  />
 					</Form.Group>
-					<Button className="m-5"
+					<Button className="m-4 ms-5"
 					       variant="success"
 					       type="submit"
 					       id="submitBtn"

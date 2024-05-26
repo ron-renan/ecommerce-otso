@@ -117,7 +117,7 @@ export default function Register() {
 
   return (
     <Container className="d-flex justify-content-center align-items-center" style={{height: "100vh"}} >
-      <Form onSubmit={registerUser} className="w-40 border border-3 mt-2 px-3">
+      <Form onSubmit={registerUser} className="w-40 border border-1 border-success rounded-3 mt-5 px-3">
         <Row>
           <Col>
             <h3 className="my-2 text-center text-success">Register</h3>
@@ -199,19 +199,19 @@ export default function Register() {
           </Col>
         </Row>
         <Row className="mt-2">
-          <Col md={7} ></Col>
-          <Col md={2}>
+          <Col md={2} ></Col>
+          <Col md={5}>
             <Button className="text-center"
               variant="success"
               type="submit"
               id="submitBtn"
-              className="mb-3 mr-5 accent"
+              className="mb-3 accent"
               disabled={!isActive}
             >
               Submit
             </Button>
           </Col>
-          <Col md={3}>
+          <Col md={5}>
             <Button
               className="accent"
               variant="secondary"

@@ -52,8 +52,8 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="text-success">
-      <h2>Reset Password</h2>
+    <div className="text-light p-3 ps-4">
+      <h4>Reset Password</h4>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="currentPassword">
           <Form.Label>Current Password:</Form.Label>
@@ -62,7 +62,7 @@ const ResetPassword = () => {
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)}
             required
-            style={{width: "45vw"}}
+            // style={{width: "34vw"}}
           />
         </Form.Group>
         <Form.Group controlId="newPassword">
@@ -72,10 +72,10 @@ const ResetPassword = () => {
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             required
-            style={{width: "45vw"}}
+            // style={{width: "35vw"}}
           />
         </Form.Group>
-        <Button className="mt-4" variant="success" type="submit">
+        <Button className="mt-4" variant="warning" type="submit">
           Reset Password
         </Button>
       </Form>

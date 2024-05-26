@@ -1,77 +1,88 @@
-import { useState, useEffect, useContext } from 'react';
-import { Table } from 'react-bootstrap';
+import { useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
+import PendingView from './PendingOrder'
+import CompletedView from './CompletedView'
 
 export default function UserOrders() {
-  const { user } = useContext(UserContext);
-  const [orders, setOrders] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+    const { user, cartCount } = useContext(UserContext);
+    const [orderData, setOrderData] = useState([]);
+    const [pendingOrders, setPendingOrders ] = useState([]);
+    const [completedOrders, setCompletedOrders ] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = await fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/order/my-orders', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const response = await fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/order/my-orders', {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                const data = await response.json();
 
-        if (!response.ok) {
-          throw new Error('Failed to fetch orders');
+                console.log('Fetched Orders:', data);
+
+                if (data.message === "'No order found for this user'") {
+                    Swal.fire({
+                        title: "No Order",
+                        icon: 'error',
+                        text: "No Orders found"
+                    });
+                } else {
+                    setOrderData(data.orders);
+                }
+            } catch (err) {
+                console.error('Error fetching orders:', err);
+                Swal.fire({
+                    title: "Something went wrong",
+                    icon: 'error',
+                });
+                setError(err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchOrders();
+    }, []);
+
+   useEffect(() => {
+    const pending = [];
+    const completed = [];
+    const cancel = [];
+    orderData.forEach(order => {
+        if (order.status.toLowerCase() === "pending") {
+            pending.push(order);
+        } else if (order.status.toLowerCase() === "cancelled") {
+            cancel.push(order);
+        } else {
+            completed.push(order);
         }
+    });
+    setPendingOrders(pending);
+    setCompletedOrders([...completed, ...cancel]);
+}, [orderData]);
 
-        const data = await response.json();
-        
-         setOrders(data.orders);
-       
-      } catch (error) {
-        console.error('Error fetching orders:', error);
-        setOrders([]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
 
-    fetchOrders();
-  }, [user]);
+    
 
-  return (
-    <div>
-      <h1>My Orders</h1>
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <Table striped bordered hover>
-        <thead>
-          <tr>
-          <th>Order ID</th>
-          	<th>Product ID</th>
-            <th>Quantity</th>
-            <th>Subtotal</th>
-            <th>Total Price</th>
-            <th>Date Ordered</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map(order => (
-          	order.productsOrdered.map(product => (
-            <tr key={`${order._id}-${product.productId}`}>
-            <td>{order._id}</td>
-			<td>{product.productId}</td>
-            <td>{product.quantity}</td>
-            <td>{product.subTotal}</td>
-            <td>{order.totalPrice}</td>
-            <td>{new Date(order.orderedOn).toLocaleString()}</td>
-            <td>{order.status}</td>
-            </tr>
-            ))
-          ))}
-        </tbody>
-      </Table>
-      )}
-    </div>
-  );
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
+    return (
+        <>
+            {pendingOrders.length && <PendingView pendingData={pendingOrders} />}
+            {completedOrders.length && <CompletedView completedData={completedOrders} />}
+        </>
+    );
 }

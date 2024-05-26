@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import { Navigate } from 'react-router-dom';
 import UserContext from '../UserContext';
@@ -54,13 +54,13 @@ export default function Profile() {
         user.id === null 
         ? <Navigate to="/products" /> 
         : <>
-            <Container fluid className="w-50" style={{marginTop: "3.8rem"}} >
+            <Container fluid className="w-50 mb-5" style={{marginTop: "3.8rem"}} >
             <Row>
-                <Col className="p-5 bg-success text-white">
-                    <h1 className="my-5">Profile</h1>
-                    <h2 className="mt-3">{`${details.firstName} ${details.lastName}`}</h2>
+                <Col className="p-3 ps-5 mt-1 bg-success text-white rounded-3">
+                    <h3>Profile</h3>
+                    <h6 className="mt-3">{`${details.firstName} ${details.lastName}`}</h6>
                     <hr />
-                    <h4>Contacts</h4>
+                    <h5>Contacts</h5>
                     <ul>
                         <li>Email: {details.email}</li>
                         <li>Mobile No: {details.mobileNo}</li>
@@ -68,12 +68,17 @@ export default function Profile() {
                 </Col>
             </Row>
 
-            <Button variant="dark">
-                <UpdateProfile/>
-            </Button>
-            <Button variant="dark">
-                <ResetPassword/>
-            </Button>
+            <Row className="pt-2">
+                <Col className="bg-success text-white rounded-3">
+                    <ResetPassword />
+                </Col>
+            </Row>
+
+            <Row className="pt-2">
+                <Col className="py-4 pt-4 bg-success rounded-3">
+                    <UpdateProfile updateDetails={updateProfileDetails} profileData={details} />
+                </Col>
+            </Row>
             </Container>
         </>
     );
