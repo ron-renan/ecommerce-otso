@@ -1,6 +1,9 @@
 import ProductCard from './ProductCard';
 import React, { useState, useEffect } from 'react';
-import { Form, Container, Row, Col } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default function ProductSearch({ onSearch }){
     const [searchTerm, setSearchTerm] = useState('');
@@ -77,9 +80,9 @@ export default function ProductSearch({ onSearch }){
                 </Col>
             </Row>
             <h3>Search Results:</h3>
-            <Row>
+            <Row >
                 {filteredProducts.map(product => (
-                    <Col md={4} key={product._id}>
+                    <Col className="wrapper margin auto" key={product._id} >
                         <ProductCard productProp={product} />
                     </Col>
                 ))}

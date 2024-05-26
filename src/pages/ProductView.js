@@ -1,5 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
-import { Container, Card, Row, Col, Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import Error from './Error';
 import UserContext from '../UserContext';
@@ -56,12 +60,13 @@ export default function ProductView() {
               <Card.Subtitle>Price:</Card.Subtitle>
               <Card.Text>PhP {product.price}</Card.Text>
               {(!user || !user.id) ?
-           
+     
               <Link className="btn btn-primary" to="/login">Login to Shop</Link>
               :
-                <Link className="btn btn-primary" to={`/products/${productId}`}>details</Link>
+
+              <Link className="btn btn-success" to={`/addToCart`}>Add to Cart</Link>
               }
-            
+          
             </Card.Body>
           </Card>
         </Col>

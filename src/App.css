@@ -9,6 +9,7 @@
   min-height: 100%;
 
 }
+<<<<<<< HEAD
 body {
     background-color: #F2F2F2 !important; /* Change the color code as needed */
 }
@@ -40,3 +41,22 @@ body {
 .admin-header{
   background-color: #007B43;
 }
+=======
+.wrapper{
+  display: grid;
+  grid-auto-columns: repeat(auto-fit, minmax(350, 1fr)) ;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.productComponent{
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 2rem;
+  text-align: center;
+  width : 20rem;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3 ;
+
+}
+>>>>>>> 4438e0360f14aab6bf184b083b231eb068ce5e5a
