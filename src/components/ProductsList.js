@@ -32,8 +32,8 @@ export default function ProductsList({ProductsData}){
         handleSearchChange();
     },[searchTerm, minPrice, maxPrice]);
 
-	return (
-		 <Container>
+return (
+	<Container >	 
 		 <Row className="border border-bordered">
 		 	<Col md={2}>
 		 		<Row>
@@ -77,13 +77,13 @@ export default function ProductsList({ProductsData}){
             <h3 className="mt-5">Search Results:</h3>
             <Row>
                 {filteredProducts.map(product => (
-                    <Col md={4} key={product._id} className="mt-2">
+                    <Col className="wrapper" key={product._id} >
                         <ProductCard productProp={product} />
                     </Col>
                 ))}
             </Row>
-  		</Col>
+  		    </Col>    
 		</Row>   
-        </Container>
+    </Container>   
     );
 }

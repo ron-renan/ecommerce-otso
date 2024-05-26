@@ -31,8 +31,8 @@ export default function ProductCard({productProp}) {
   //   return <Navigate to="/login" />
   // }
   
-       return (
-    <Card id="productComponent" >
+return (
+    <Card className="productComponent" >
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Subtitle>Description:</Card.Subtitle>

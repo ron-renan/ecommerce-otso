@@ -124,9 +124,9 @@ export default function Register() {
       <Form onSubmit={registerUser} className="w-50 border border-4 mt-2 px-5">
         <Row>
           <Col>
-            <h3 className="my-2 text-center">Register</h3>
+            <h3 className="my-5 text-center">Register</h3>
             <Row>
-              <Col md={1} ></Col>
+             <Col md={1}></Col>
               <Col md={10}>
                 <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-secondary">
               <Form.Label>First Name:</Form.Label>

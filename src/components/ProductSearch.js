@@ -80,9 +80,9 @@ export default function ProductSearch({ onSearch }){
                 </Col>
             </Row>
             <h3>Search Results:</h3>
-            <Row>
+            <Row >
                 {filteredProducts.map(product => (
-                    <Col md={4} key={product._id}>
+                    <Col className="wrapper margin auto" key={product._id} >
                         <ProductCard productProp={product} />
                     </Col>
                 ))}

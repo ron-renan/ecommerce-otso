@@ -8,6 +8,20 @@
   min-height: 100%;
 
 }
+.wrapper{
+  display: grid;
+  grid-auto-columns: repeat(auto-fit, minmax(350, 1fr)) ;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
 .productComponent{
-  width : 18rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 2rem;
+  text-align: center;
+  width : 20rem;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3 ;
+
 }
