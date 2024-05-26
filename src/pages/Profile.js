@@ -1,5 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Swal from 'sweetalert2';
 import { Navigate } from 'react-router-dom';
 import UserContext from '../UserContext';
@@ -41,40 +44,31 @@ export default function Profile() {
         });
     }, []);
 
-    // Function to update profile details
-    const updateProfileDetails = (newDetails) => {
-        setDetails(prevDetails => ({
-            ...prevDetails,
-            ...newDetails
-        }));
-    };
-
-
-    return (
-        user.id === null 
-        ? <Navigate to="/products" /> 
-        : <>
-            <Container fluid className="w-75">
-            <Row>
-                <Col className="p-5 bg-primary text-white">
-                    <h1 className="my-5">Profile</h1>
-                    <h2 className="mt-3">{`${details.firstName} ${details.lastName}`}</h2>
-                    <hr />
-                    <h4>Contacts</h4>
-                    <ul>
-                        <li>Email: {details.email}</li>
-                        <li>Mobile No: {details.mobileNo}</li>
-                    </ul>
-                </Col>
-            </Row>
-
-            <Button variant="dark">
-                <UpdateProfile/>
+return (
+    user.id === null 
+    ? <Navigate to="/products" /> 
+    : <>
+    <Container fluid className="w-75">
+    <Row>
+        <Col className="p-5 bg-success text-white">
+            <h1 className="my-5">Profile</h1>
+            <h2 className="mt-3">{`${details.firstName} ${details.lastName}`}</h2>
+            <hr />
+            <h4>Contacts</h4>
+            <ul>
+                <li>Email: {details.email}</li>
+                <li>Mobile No: {details.mobileNo}</li>
+            </ul>
+            <hr />
+            <Button variant="success" >
+            <UpdateProfile/>
             </Button>
-            <Button variant="dark">
-                <ResetPassword/>
+            <Button variant="success">
+            <ResetPassword/>
             </Button>
-            </Container>
-        </>
+        </Col>
+    </Row>
+    </Container>
+    </>
     );
 }

@@ -1,4 +1,8 @@
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { useState, useEffect, useContext } from 'react';
 import UserContext from '../UserContext';
 import { Navigate } from 'react-router-dom';
@@ -213,7 +217,7 @@ export default function Register() {
           <Col md={3}>
             <Button
               variant="secondary"
-              type="button"
+              type="reset"
               id="cancelBtn"
               onClick={clearForm}>
               Cancel

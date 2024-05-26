@@ -5,9 +5,6 @@ import AllOrders from '../components/AllOrders';
 
 export default function RetrieveOrders() {
   const { user } = useContext(UserContext);
-
-  
-
   return (
     <div>
       {user.isAdmin ? <AllOrders /> : <UserOrders />}

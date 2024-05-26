@@ -16,7 +16,7 @@ import Users from './pages/Users';
 
 import './App.css';
 import {UserProvider} from './UserContext';
-import {Container} from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
 
 function App() {
    const [user, setUser] = useState({

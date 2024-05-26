@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Modal, Form } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 import Swal from 'sweetalert2';
 
-export default function ResetPassword(){
+export default function ResetPassword() {
   const [newPassword, setNewPassword] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
-  const [message, setMessage] = useState('');
   const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = async (event) => {
@@ -13,7 +14,7 @@ export default function ResetPassword(){
     if (newPassword === currentPassword) {
       Swal.fire({
         title: 'Error',
-        text: 'Current password is the same with new password. Try another password',
+        text: 'Current password is the same as the new password. Please choose a different password.',
         icon: 'error',
       });
       return;
@@ -27,7 +28,7 @@ export default function ResetPassword(){
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ newPassword: newPassword, currentPassword: currentPassword }),
+        body: JSON.stringify({ newPassword, currentPassword }),
       });
 
       if (response.ok) {
@@ -36,11 +37,14 @@ export default function ResetPassword(){
           text: 'Password reset successful',
           icon: 'success',
         });
+        setShowModal(false); // Close modal on success
+        setNewPassword('');
+        setCurrentPassword('');
       } else {
         const result = await response.json();
         Swal.fire({
           title: 'Error',
-          text: result.error || 'Something went wrong',
+          text: result.message || 'Something went wrong',
           icon: 'error',
         });
       }
@@ -83,13 +87,13 @@ export default function ResetPassword(){
                 required
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
-              Reset Password
-            </Button>
+
           </Form>
-          {message && <p>{message}</p>}
         </Modal.Body>
         <Modal.Footer>
+            <Button variant="primary" type="submit" onClick= {handleSubmit}>
+              Reset Password
+            </Button>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Close
           </Button>
@@ -97,4 +101,4 @@ export default function ResetPassword(){
       </Modal>
     </>
   );
-};
+}

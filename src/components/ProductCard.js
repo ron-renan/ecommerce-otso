@@ -1,4 +1,5 @@
-import { Card, Button } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import UserContext from '../UserContext';
@@ -31,23 +32,22 @@ export default function ProductCard({productProp}) {
   // }
   
        return (
-    <Card id="productComponent">
+    <Card id="productComponent" >
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Subtitle>Description:</Card.Subtitle>
-                     <Card.Text>{description}</Card.Text>
-                     <Card.Subtitle>Price:</Card.Subtitle>
-                    <Card.Text>PhP {price}</Card.Text>
-                     <Card.Text>Quantity: {quantity}</Card.Text>
-                     {(!user || !user.id) ?
-                    <Link className="btn btn-primary" to={`/products/${_id}`}>details</Link>
-                    :
-                    <Button variant="primary" block="true" onClick={addToCart}>
-                  Add To Cart
-                </Button>
-              }
+        <Card.Text>{description}</Card.Text>
+        <Card.Subtitle>Price:</Card.Subtitle>
+        <Card.Text>&#8369; {price}</Card.Text>
+        <Card.Text>Quantity: {quantity}</Card.Text>
+         {(!user || !user.id) ?
+        <Link className="btn btn-primary" to={`/products/${_id}`}>details</Link>
+        :
+        <Button variant="success" block="true" onClick={addToCart}>
+        Add To Cart</Button>
+        }
       </Card.Body>
     </Card>
   );
 
-   }
+}

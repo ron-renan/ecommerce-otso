@@ -1,18 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import ProductCard from './ProductCard';
-import {Container, Form, Row, Col} from 'react-bootstrap'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
 
-export default  function ProductsList({ProductsData}){
+export default function ProductsList({ProductsData}){
 
 	const [filteredProducts, setFilteredProducts] = useState([]);
 	const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
-    const [allProducts] = useState([]);
+    const [allProducts, setAllProducts] = useState([]);
 
  	useEffect(() => {
 			setFilteredProducts(ProductsData.products);
-			// setAllProducts(ProductsData.products);
+			setAllProducts(ProductsData.products);
 	}, [ProductsData]);
 
 	 useEffect(() => {
@@ -24,7 +27,7 @@ export default  function ProductsList({ProductsData}){
                    (!maxPrice || product.price <= parseFloat(maxPrice));
         });
         setFilteredProducts(filtered);
-        // onSearch(filtered.length > 0); // Call the onSearch prop to manage visibility
+        //onSearch(filtered.length > 0); // Call the onSearch prop to manage visibility
     };
         handleSearchChange();
     },[searchTerm, minPrice, maxPrice]);

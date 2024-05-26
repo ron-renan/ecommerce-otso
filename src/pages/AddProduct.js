@@ -1,4 +1,6 @@
-import { Form, Button, Container} from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
 import { useState, useEffect, useContext, useRef} from 'react';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
@@ -104,7 +106,6 @@ export default function AddProduct(){
 	    }
 	};
 
-
 	useEffect(() => {
 
                     if(name !== '' && description !== '' && price !== "0" && price !== ""){
@@ -115,58 +116,53 @@ export default function AddProduct(){
 
                 }, [name, description, price]);
 
-	return (
-				(!user.isAdmin) ?
-					<Navigate to="/products"/>
-					:
-			<Container fluid className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>				
-					<Form onSubmit={(e) => addProduct(e)} className="w-50 px-5 border border-4 mt-5">
-					<h1 className="my-5 text-center">Add Product</h1>
-
-					<Form.Group className="mt-5 px-5">
-					  <Form.Label>Name:</Form.Label>
-					  <Form.Control 
-					  ref={txtnameRef}
-					  id="txtname" 
-					  type="text" 
-					  placeholder="Enter Product name" 
-					  required
-					  value={name}
-					  onChange={e => {setName(e.target.value)}}
-					  autofocus
-					  />
-					</Form.Group>
-
-					<Form.Group className="px-5">
-				        <Form.Label>Price:</Form.Label>
-				        <Form.Control
-				        type="number" 
-				        placeholder="Enter product price" 
-				        required
-				        value={price}
-					  	onChange={e => {setPrice(e.target.value)}}
-				        />
-				    </Form.Group>
-
-					<Form.Group className="px-5">
-					  <Form.Label>Description:</Form.Label>
-					  <Form.Control as="textarea" rows={6}
-					  placeholder="Enter product description" 
-					  required
-					  value={description}
-					  onChange={e => {setDescription(e.target.value)}}
-					  />
-					</Form.Group>
-					<Button className="m-5"
-					       variant={isActive ? "primary" : "danger"}
-					       type="submit"
-					       id="submitBtn"
-					       disabled={!isActive}
-					     >
-					       Submit
-					</Button>
-				     <Button variant="secondary" onClick={clearButton}>Cancel</Button>
-				    </Form>
-			</Container>
+return (
+	(!user.isAdmin) ?
+		<Navigate to="/products"/>
+	:
+	<Container fluid className="d-flex justify-content-center align-items-center">				
+		<Form onSubmit={(e) => addProduct(e)} className="w-50 px-5 border border-4 mt-5">
+		<h1 className="my-5 text-center">Add Product</h1>
+			<Form.Group className="mt-5 px-5">
+			  <Form.Label>Name:</Form.Label>
+			  <Form.Control 
+				  ref={txtnameRef}
+				  id="txtname" 
+				  type="text" 
+				  placeholder="Enter Product name" 
+				  required
+				  value={name}
+				  onChange={e => {setName(e.target.value)}}
+				  autofocus
+				  />
+			</Form.Group>
+			<Form.Group className="px-5">
+		        <Form.Label>Price:</Form.Label>
+			        <Form.Control
+			        type="number" 
+			        placeholder="Enter product price" 
+			        required
+			        value={price}
+				  	onChange={e => {setPrice(e.target.value)}}
+			        />
+		    </Form.Group>
+			<Form.Group className="px-5">
+			  <Form.Label>Description:</Form.Label>
+				  <Form.Control as="textarea" rows={6}
+				  placeholder="Enter product description" 
+				  required
+				  value={description}
+				  onChange={e => {setDescription(e.target.value)}}
+				  />
+				</Form.Group>
+				<Button className="m-5"
+			       variant={isActive ? "primary" : "danger"}
+			       type="submit"
+			       id="submitBtn"
+			       disabled={!isActive}
+			     >Submit</Button>
+			     <Button variant="secondary" type="reset" onClick={clearButton}>Cancel</Button>
+	    </Form>
+	</Container>
 	)
 }

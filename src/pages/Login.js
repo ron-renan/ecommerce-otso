@@ -1,4 +1,6 @@
-import { Form, Button, Container } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
 import { useState, useEffect, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import UserContext from '../UserContext';
@@ -88,7 +90,7 @@ export default function Login() {
         (user.id !== null) ?
         <Navigate to="/products" />
         :
-        <Container className="d-flex justify-content-center align-items-center" style={{ height: '85vh' }}>   
+        <Container className="d-flex justify-content-center align-items-center" >   
          <Form onSubmit={(e) => authenticate(e)} className="w-50 border border-4 mt-5">
             <h1 className="text-center mt-4">Login</h1>
                 <Form.Group controlId="userEmail" className="mt-5 px-5 fw-bolder lh-base fs-5 text-secondary">

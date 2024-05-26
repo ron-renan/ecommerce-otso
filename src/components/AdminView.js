@@ -1,4 +1,10 @@
-import { Table, Button, Form, Modal } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import Table from 'react-bootstrap/Table';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { useState, useEffect, useContext } from 'react';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
@@ -7,6 +13,7 @@ import EditProduct from './EditProduct';
 export default function AdminView({ ProductsData }) {
     const { user } = useContext(UserContext);
     const [products, setProducts] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [editingProduct, setEditingProduct] = useState({});
 
@@ -60,10 +67,29 @@ export default function AdminView({ ProductsData }) {
 
     const handleClose = () => setShowModal(false);
 
-    return (
-        <>
-            <h1 className="text-center my-3">Admin Dashboard</h1>
-            <Table striped bordered>
+    const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+  // Filter products based on search term
+  const filteredProducts = products.filter(product =>
+    `${product._id}`.includes(searchTerm) || `${product.name}`.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+return (
+<>
+<Container className="mt-2">
+ <h2 className="text-center my-3">Admin Dashboard</h2>
+  <Row>
+    <Col md={{ span: 6, offset: 3 }}>
+      <Form.Control
+        type="text"
+        placeholder="Search product"
+        value={searchTerm}
+        onChange={handleSearchChange}
+      />
+    </Col>
+  </Row>  
+<Table responsive striped bordered hover className= "mt-2">
                 <thead className="text-center py-5 fs-5">
                     <tr>
                         <th>ID</th>
@@ -75,7 +101,7 @@ export default function AdminView({ ProductsData }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {products.map(product => (
+                    {filteredProducts.map(product => (
                         <tr key={product._id}>
                             <td>{product._id}</td>
                             <td>{product.name}</td>
@@ -99,8 +125,7 @@ export default function AdminView({ ProductsData }) {
                         </tr>
                     ))}
                 </tbody>
-            </Table>
-            
+            </Table>            
             <Modal show={showModal} onHide={handleClose}>
                 <EditProduct
                     editingProduct={editingProduct}
@@ -109,6 +134,7 @@ export default function AdminView({ ProductsData }) {
                     showModal={showModal}
                 />
             </Modal>
+            </Container>
         </>
     );
 }
