@@ -41,28 +41,28 @@ export default function AllOrders() {
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <Table striped bordered hover>
-          <thead>
+        <Table striped bordered hover responsive="md" className="table-fluid">
+          <thead className="text-center py-5 fs-7 admin-header">
             <tr>
-              <th>Order ID</th>
-              <th>User</th>
+              <th className="py-3 text-light d-none d-md-table-cell">Order ID</th>
+              <th className="py-3 text-light d-none d-md-table-cell">User</th>
               <th>Product Name</th>
               <th>Quantity</th>
-              <th>Subtotal</th>
+              <th className="py-3 text-light d-none d-md-table-cell">Subtotal</th>
               <th>Total Price</th>
               <th>Ordered On</th>
               <th>Status</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-center">
             {orders.map((order) =>
               order.productsOrdered.map((product) => (
                 <tr key={`${order._id}-${product.productId._id}`}>
-                  <td>{order._id}</td>
-                  <td>{order.userId._id}</td>
+                  <td className="d-none d-md-table-cell">{order._id}</td>
+                  <td className="d-none d-md-table-cell">{order.userId._id}</td>
                   <td>{product.productId.name}</td>                  
                   <td>{product.quantity}</td>
-                  <td>{product.subTotal}</td>
+                  <td className="d-none d-md-table-cell">{product.subTotal}</td>
                   <td>{order.totalPrice}</td>
                   <td>{new Date(order.orderedOn).toLocaleString()}</td>
                   <td>{order.status}</td>
