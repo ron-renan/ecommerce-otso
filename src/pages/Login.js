@@ -1,4 +1,4 @@
-import { Form, Button, Container } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useState, useEffect, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import UserContext from '../UserContext';
@@ -89,47 +89,56 @@ export default function Login() {
                         <Navigate to="/products" />
                     :
                     <Container className="d-flex justify-content-center align-items-center" style={{ height: '85vh' }}>   
-                     <Form onSubmit={(e) => authenticate(e)} className="w-40 border border-1 border-success rounded-2 mt-5">
-                            <h3 className="text-center mt-3 text-success">Login</h3>
-                            <Form.Group controlId="userEmail" className="mt-3 px-5 fw-bolder lh-base fs-7 text-success">
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control className="my-1 fs-7"
-                                    type="email" 
-                                    placeholder="Enter email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
-                                />
-                            </Form.Group>
+                        <Row>
+                            <Col md={1} x={12}></Col>
+                            <Col md={10} x={12}>
+                                <Form onSubmit={(e) => authenticate(e)} className="border border-1 border-success rounded-2 mt-5">
+                                       <h3 className="text-center mt-3 text-success">Login</h3>
+                                       <Form.Group controlId="userEmail" className="mt-3 px-5 fw-bolder lh-base fs-7 text-success">
+                                           <Form.Label>Email address</Form.Label>
+                                           <Form.Control className="my-1 fs-7"
+                                               type="email" 
+                                               placeholder="Enter email"
+                                               value={email}
+                                               onChange={(e) => setEmail(e.target.value)}
+                                               required
+                                           />
+                                       </Form.Group>
 
-                            <Form.Group controlId="password" className="px-5 fw-bolder lh-base fs-7 text-success">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control className="my-1 fs-7"
-                                    type="password" 
-                                    placeholder="Password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required
-                                     autocomplete="current-password"
-                                />
-                            </Form.Group>
-                                <Button className="m-4 ms-5 accent"
-                                       variant="success"
-                                       type="submit"
-                                       id="submitBtn"
-                                       disabled={!isActive}
-                                     >
-                                       Submit
-                                </Button>
-                                <Button className="d-inline accent"
-                                  variant="secondary"
-                                  type="button"
-                                  id="cancelBtn"
-                                  onClick={clearForm}
-                                >
-                                  Cancel
-                                </Button>
-                        </Form>
+                                       <Form.Group controlId="password" className="mt-3 px-5 fw-bolder lh-base fs-7 text-success">
+                                           <Form.Label>Password</Form.Label>
+                                           <Form.Control className="my-1 fs-7"
+                                               type="password" 
+                                               placeholder="Password"
+                                               value={password}
+                                               onChange={(e) => setPassword(e.target.value)}
+                                               required
+                                                autocomplete="current-password"
+                                           />
+                                       </Form.Group>
+                                           <Button className="m-4 ms-5 accent"
+                                                  variant="success"
+                                                  type="submit"
+                                                  id="submitBtn"
+                                                  disabled={!isActive}
+                                                >
+                                                  Submit
+                                           </Button>
+                                           <Button className="d-inline accent"
+                                             variant="secondary"
+                                             type="button"
+                                             id="cancelBtn"
+                                             onClick={clearForm}
+                                           >
+                                             Cancel
+                                           </Button>
+                                   </Form>
+
+                            </Col>
+                            <Col md={1} x={12}></Col>
+                        </Row>
+
+                     
                     </Container>     
             )
         }

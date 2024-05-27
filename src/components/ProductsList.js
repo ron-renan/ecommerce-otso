@@ -10,6 +10,8 @@ export default  function ProductsList({ProductsData}){
     const [searchTerm, setSearchTerm] = useState('');
     const [allProducts] = useState([]);
 
+    console.log(ProductsData);
+
  	useEffect(() => {
 			setFilteredProducts(ProductsData.products);
 			// setAllProducts(ProductsData.products);

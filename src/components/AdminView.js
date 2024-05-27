@@ -64,43 +64,43 @@ export default function AdminView({ ProductsData }) {
         <>
         <Container fluid className="pt-5">
             <h2 className="text-center my-5 text-success">Admin Dashboard</h2>
-            <Table fluid striped hover response="sm">
-                <thead className="text-center py-5 fs-7 admin-header">
-                    <tr>
-                        <th className="py-3 text-light">ID</th>
-                        <th className="py-3 text-light">Name</th>
-                        <th className="py-3 text-light">Description</th>
-                        <th className="py-3 text-light">Price</th>
-                        <th className="py-3 text-light">Availability</th>
-                        <th colSpan={2} className="py-3 text-light">Action</th>
+            <Table striped bordered hover responsive="sm" className="table-fluid">
+            <thead className="text-center py-5 fs-7 admin-header">
+                <tr>
+                    <th className="py-3 text-light d-none d-sm-table-cell">ID</th>
+                    <th className="py-3 text-light">Name</th>
+                    <th className="py-3 text-light">Description</th>
+                    <th className="py-3 text-light d-none d-sm-table-cell">Price</th>
+                    <th className="py-3 text-light d-none d-sm-table-cell">Availability</th>
+                    <th colSpan={2} className="py-3 text-light">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {products.map(product => (
+                    <tr key={product._id}>
+                        <td className="d-none d-sm-table-cell">{product._id}</td>
+                        <td>{product.name}</td>
+                        <td>{product.description}</td>
+                        <td className="d-none d-sm-table-cell">{product.price}</td>
+                        <td className={`fw-bold ${product.isActive ? 'text-success' : 'text-danger'} d-none d-sm-table-cell`}>
+                            {product.isActive ? "Available" : "Unavailable"}
+                        </td>
+                        <td>
+                            <Button onClick={() => handleEditClick(product)} className="bg-warning text-dark mx-3">Edit</Button>
+                        </td>
+                        <td>
+                            {user.id ? (
+                                <Form onSubmit={(e) => handleProductActivation(e, product._id, product.isActive)}>
+                                    <Button variant={product.isActive ? "success" : "danger"} type="submit">
+                                        {product.isActive ? "Archive" : "Activate"}
+                                    </Button>
+                                </Form>
+                            ) : null}
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    {products.map(product => (
-                        <tr key={product._id}>
-                            <td>{product._id}</td>
-                            <td>{product.name}</td>
-                            <td>{product.description}</td>
-                            <td>{product.price}</td>
-                            <td className={`fw-bold ${product.isActive ? 'text-success' : 'text-danger'}`}>
-                                {product.isActive ? "Available" : "Unavailable"}
-                            </td>
-                            <td>
-                                <Button onClick={() => handleEditClick(product)} className="bg-warning text-dark mx-3">Edit</Button>
-                            </td>
-                            <td>
-                                {user.id ? (
-                                    <Form onSubmit={(e) => handleProductActivation(e, product._id, product.isActive)}>
-                                        <Button variant={product.isActive ? "success" : "danger"} type="submit">
-                                            {product.isActive ? "Archive" : "Activate"}
-                                        </Button>
-                                    </Form>
-                                ) : null}
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
+                ))}
+            </tbody>
+        </Table>
             </Container>
             <Modal show={showModal} onHide={handleClose}>
                 <EditProduct

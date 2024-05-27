@@ -22,8 +22,10 @@ export function UserProvider({ children }) {
       }
 
       const data = await response.json();
-      if (data) {
-        setCartCount(data.items.length);  
+      if (data.message === 'Your cart is empty.') {
+        setCartCount(0); 
+      }else{
+        setCartCount(data.items.length); 
       }
       
     } catch (error) {

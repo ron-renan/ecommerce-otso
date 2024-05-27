@@ -116,113 +116,105 @@ export default function Register() {
   }
 
   return (
-    <Container className="d-flex justify-content-center align-items-center" style={{height: "100vh"}} >
-      <Form onSubmit={registerUser} className="w-40 border border-1 border-success rounded-3 mt-5 px-3">
-        <Row>
-          <Col>
-            <h3 className="my-2 text-center text-success">Register</h3>
-            <Row>
-              <Col md={1} ></Col>
-              <Col md={10}>
-                <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-success">
-              <Form.Label>First Name:</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter First Name"
-                required
-                value={firstName}
-                onChange={e => setFirstName(e.target.value)}
-              />
-            </Form.Group>
+    <Container fluid className="mt-5">
+      <Row>
+        <Col md={3} x={12}>
+          
+        </Col>
+        <Col md={6} x={12}>
+          <Form onSubmit={registerUser} className="w-100 border border-1 border-success rounded-3 mt-5 pb-4 px-3">
+                <h3 className="my-2 text-center text-success">Register</h3>
+                  <Form.Group className="mb-3 fw-bolder lh-1 px-5 fs-6 text-success">
+                  <Form.Label>First Name:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter First Name"
+                    required
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
+                  />
+                </Form.Group>
 
-            <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-success">
-              <Form.Label>Last Name:</Form.Label>
-              <Form.Control
-                type="text" 
-                placeholder="Enter Last Name"
-                required
-                value={lastName}
-                onChange={e => setLastName(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-success">
-              <Form.Label>Email:</Form.Label>
-              <Form.Control 
-                type="email"
-                placeholder="Enter email"
-                required
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                autocomplete="email"
-              />
-            </Form.Group>
+                <Form.Group className="mb-3 fw-bolder lh-1 fs-6 px-5 text-success">
+                  <Form.Label>Last Name:</Form.Label>
+                  <Form.Control
+                    type="text" 
+                    placeholder="Enter Last Name"
+                    required
+                    value={lastName}
+                    onChange={e => setLastName(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3 fw-bolder lh-1 fs-6 px-5 text-success">
+                  <Form.Label>Email:</Form.Label>
+                  <Form.Control 
+                    type="email"
+                    placeholder="Enter email"
+                    required
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    autocomplete="email"
+                  />
+                </Form.Group>
 
-            <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-success">
-              <Form.Label>Mobile No:</Form.Label>
-              <Form.Control 
-                type="text"
-                placeholder="Enter 11 Digit No."
-                required
-                value={mobileNo}
-                onChange={e => setMobileNo(e.target.value)}
-                 autocomplete="tel"
-              />
-            </Form.Group>
+                <Form.Group className="mb-3 fw-bolder lh-1 fs-6 px-5 text-success">
+                  <Form.Label>Mobile No:</Form.Label>
+                  <Form.Control 
+                    type="text"
+                    placeholder="Enter 11 Digit No."
+                    required
+                    value={mobileNo}
+                    onChange={e => setMobileNo(e.target.value)}
+                     autocomplete="tel"
+                  />
+                </Form.Group>
 
-            <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-success">
-              <Form.Label>Password:</Form.Label>
-              <Form.Control 
-                type="password"
-                placeholder="Enter Password"
-                required
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-              />
-            </Form.Group>
+                <Form.Group className="mb-3 fw-bolder lh-1 fs-6 px-5 text-success">
+                  <Form.Label>Password:</Form.Label>
+                  <Form.Control 
+                    type="password"
+                    placeholder="Enter Password"
+                    required
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                  />
+                </Form.Group>
 
-            <Form.Group className="mb-3 fw-bolder lh-1 fs-6 text-success">
-              <Form.Label>Confirm Password:</Form.Label>
-              <Form.Control 
-                className="accent"
-                type="password"
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={e => setConfirmPassword(e.target.value)}
-                required
-              />
-            </Form.Group>
+                <Form.Group className="mb-3 fw-bolder lh-1 fs-6 px-5 text-success">
+                  <Form.Label>Confirm Password:</Form.Label>
+                  <Form.Control 
+                    className="accent" 
+                    type="password"
+                    placeholder="Confirm Password"
+                    value={confirmPassword}
+                    onChange={e => setConfirmPassword(e.target.value)}
+                    required
+                  />
+                </Form.Group>
 
-              </Col>
-              <Col md={1}></Col>
-            </Row>
-            
-          </Col>
-        </Row>
-        <Row className="mt-2">
-          <Col md={2} ></Col>
-          <Col md={5}>
-            <Button className="text-center"
-              variant="success"
-              type="submit"
-              id="submitBtn"
-              className="mb-3 accent"
-              disabled={!isActive}
-            >
-              Submit
-            </Button>
-          </Col>
-          <Col md={5}>
-            <Button
-              className="accent"
-              variant="secondary"
-              type="button"
-              id="cancelBtn"
-              onClick={clearForm}>
-              Cancel
-            </Button>
-          </Col>
-        </Row>
-      </Form>
+                <Button 
+                  variant="success"
+                  type="submit"
+                  id="submitBtn"
+                  className="accent d-inline text-center ms-5"
+                  disabled={!isActive}
+                >
+                  Submit
+                </Button>
+                <Button
+                  className="accent d-inline text-center ms-5"
+                  variant="secondary"
+                  type="button"
+                  id="cancelBtn"
+                  onClick={clearForm}>
+                  Cancel
+                </Button>
+          </Form>
+
+        </Col>
+        <Col md={3} x={12}></Col>
+      </Row>
+      
     </Container>
   );
 }
