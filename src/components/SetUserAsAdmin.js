@@ -50,7 +50,7 @@ export default function SetUserAsAdmin({ user }) {
     return (
         <Form onSubmit={handleSetAsAdmin}>
             <Button variant="success" type="submit">
-                Set as Admin
+                Admin
             </Button>
         </Form>
     );

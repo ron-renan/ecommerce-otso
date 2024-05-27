@@ -51,7 +51,7 @@ export default function Users() {
   return (
     <Container className="mt-5">
       <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col md={{ span: 6, offset: 3 }} className="my-5">
           <Form.Control
             type="text"
             placeholder="Search users"
@@ -63,28 +63,28 @@ export default function Users() {
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <Table striped bordered hover className="mt-3">
-          <thead>
+        <Table striped bordered hover responsive="md" className="table-fluid mb-4">
+          <thead className="text-center py-5 fs-7 admin-header">
             <tr>
-              <th>User ID</th>
+              <th className="py-3 text-light d-none d-md-table-cell">User ID</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Mobile Number</th>
+              <th className="py-3 text-light d-none d-md-table-cell">Mobile Number</th>
               <th>Admin</th>
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-center">
             {filteredUsers.map((user) => (
               <tr key={user._id}>
-                <td>{user._id}</td>
+                <td className="d-none d-md-table-cell">{user._id}</td>
                 <td>{`${user.firstName} ${user.lastName}`}</td>
                 <td>{user.email}</td>
-                <td>{user.mobileNo}</td>
+                <td className="d-none d-md-table-cell">{user.mobileNo}</td>
                 <td className={`fw-bold ${user.isAdmin ? 'text-success' : 'text-danger'}`}>
                   {user.isAdmin ? "Yes" : "No"}
                 </td>
-                <td>
+                <td className="text-center py-1">
                   {!user.isAdmin && currentUser.isAdmin && (
                     <SetUserAsAdmin user={user} />
                   )}
