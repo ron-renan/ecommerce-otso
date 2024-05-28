@@ -15,7 +15,7 @@ export default function Users() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/users', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -63,15 +63,15 @@ export default function Users() {
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <Table striped bordered hover responsive="md" className="table-fluid mb-4">
+        <Table fluid striped bordered hover responsive="sm" size="sm" className="table-fluid mb-4">
           <thead className="text-center py-5 fs-7 admin-header">
             <tr>
               <th className="py-3 text-light d-none d-md-table-cell">User ID</th>
-              <th>Name</th>
-              <th>Email</th>
+              <th className="py-3">Name</th>
+              <th className="py-3">Email</th>
               <th className="py-3 text-light d-none d-md-table-cell">Mobile Number</th>
-              <th>Admin</th>
-              <th>Actions</th>
+              <th className="py-3">Admin</th>
+              <th className="py-3">Actions</th>
             </tr>
           </thead>
           <tbody className="text-center">

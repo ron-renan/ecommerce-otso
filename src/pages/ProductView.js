@@ -15,7 +15,7 @@ export default function ProductView() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/products/${productId}`);
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/products/${productId}`);
         const data = await response.json();
 
         if (response.ok) {

@@ -8,18 +8,19 @@ export default  function ProductsList({ProductsData}){
 	const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
-    const [allProducts] = useState([]);
-
-    console.log(ProductsData);
-
+    const [allProducts, setAllProducts] = useState([]);
+    
  	useEffect(() => {
 			setFilteredProducts(ProductsData.products);
-			// setAllProducts(ProductsData.products);
+    	setAllProducts(ProductsData.products);
 	}, [ProductsData]);
+
+       
 
 	 useEffect(() => {
 
 	 const handleSearchChange = () => {
+
         const filtered = allProducts.filter(product => {
             return product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
                    (!minPrice || product.price >= parseFloat(minPrice)) &&

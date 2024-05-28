@@ -22,7 +22,7 @@ export default function PlaceOrder() {
     const deleteProduct = async (productId) => {
         try {
             console.log(`Deleting product with ID: ${productId}`);
-            await fetch(`http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/cart/${productId}/removeFromCart`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/cart/${productId}/removeFromCart`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -36,7 +36,7 @@ export default function PlaceOrder() {
     const processOrder = async () => {
         try {
             console.log('Processing order');
-            const response = await fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/order/checkout', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/order/checkout`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export default function PlaceOrder() {
     const insertProduct = async (productId, quantity) => {
         try {
             console.log(`Inserting product with ID: ${productId}, Quantity: ${quantity}`);
-            await fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/cart/addToCart', {
+            await fetch(`${process.env.REACT_APP_API_URL}/cart/addToCart`, {
               method: 'POST',
               headers: {
                 "Content-Type": "application/json",
@@ -94,7 +94,7 @@ export default function PlaceOrder() {
         if (unselected.length > 0) {
             console.log('Deleting unselected products');
             for (let item of unselected) {
-                await deleteProduct(item.productId);
+                await deleteProduct(item.productId._id);
             }
         }
 
@@ -105,14 +105,14 @@ export default function PlaceOrder() {
         if (orders.length > 0) {
             console.log('Deleting order products');
             for (let item of orders) {
-                await deleteProduct(item.productId);
+                await deleteProduct(item.productId._id);
             }
         }
         // Re-insert unselected products to cart
         if (unselected.length > 0) {
             console.log('Re-inserting unselected products');
             for (let item of unselected) {
-                await insertProduct(item.productId, item.quantity);
+                await insertProduct(item.productId._id, item.quantity);
             }
         }
 

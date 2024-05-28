@@ -19,7 +19,7 @@ export default function ProductSearch({ onSearch }){
 
     const fetchAllProducts = async () => {
         try {
-            const response = await fetch(`http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/products`);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/products`);
             const data = await response.json();
             setAllProducts(data.products);
             setFilteredProducts(data.products);
@@ -28,6 +28,7 @@ export default function ProductSearch({ onSearch }){
         }
     };
 
+    
     const handleSearchChange = () => {
         const filtered = allProducts.filter(product => {
             return product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -38,6 +39,7 @@ export default function ProductSearch({ onSearch }){
         onSearch(filtered.length > 0); // Call the onSearch prop to manage visibility
     };
 
+    
     return (
         <Container>
             <h2>Product Search</h2>

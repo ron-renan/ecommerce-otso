@@ -1,6 +1,6 @@
 import Banner from '../components/Banner';
 import FeaturedProducts from '../components/FeaturedProducts';
-
+import LandingPage from '../components/LandingPage.js'
 
 
 export default function Home() {
@@ -15,7 +15,8 @@ export default function Home() {
 
     return (
         <>
-            <Banner data={data}/>
+            <LandingPage />
+            {/*<Banner data={data}/>*/}
             <FeaturedProducts />        
         </>
     );

@@ -14,7 +14,7 @@ export default function SetUserAsAdmin({ user }) {
                 throw new Error("Unauthorized");
             }
 
-            const response = await fetch(`http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/users/${user._id}/setAsAdmin`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${user._id}/setAsAdmin`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export default function SetUserAsAdmin({ user }) {
 
     return (
         <Form onSubmit={handleSetAsAdmin}>
-            <Button variant="success" type="submit">
+            <Button variant="success" size="sm" type="submit">
                 Admin
             </Button>
         </Form>

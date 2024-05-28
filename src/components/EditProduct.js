@@ -12,7 +12,7 @@ export default function EditProduct({ editingProduct, handleClose, setProducts }
 
     const handleUpdateProduct = (e) => {
         e.preventDefault();
-        fetch(`http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/products/${editedProduct._id}/update`, {
+        fetch(`${process.env.REACT_APP_API_URL}/products/${editedProduct._id}/update`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

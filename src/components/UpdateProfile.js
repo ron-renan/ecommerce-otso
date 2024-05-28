@@ -22,7 +22,7 @@ const UpdateProfile = ({ updateDetails, profileData }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/users/profile', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

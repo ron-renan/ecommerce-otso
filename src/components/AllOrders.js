@@ -10,7 +10,7 @@ export default function AllOrders() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/order/all-orders', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/order/all-orders`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -41,17 +41,17 @@ export default function AllOrders() {
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <Table striped bordered hover responsive="md" className="table-fluid">
+        <Table striped bordered hover responsive="md" size="sm" className="table-fluid">
           <thead className="text-center py-5 fs-7 admin-header">
             <tr>
               <th className="py-3 text-light d-none d-md-table-cell">Order ID</th>
               <th className="py-3 text-light d-none d-md-table-cell">User</th>
-              <th>Product Name</th>
-              <th>Quantity</th>
+              <th className="py-3">Product Name</th>
+              <th className="py-3">Qty</th>
               <th className="py-3 text-light d-none d-md-table-cell">Subtotal</th>
-              <th>Total Price</th>
-              <th>Ordered On</th>
-              <th>Status</th>
+              <th className="py-3">Total Price</th>
+              <th className="py-3">Ordered</th>
+              <th className="py-3">Status</th>
             </tr>
           </thead>
           <tbody className="text-center">
@@ -64,7 +64,7 @@ export default function AllOrders() {
                   <td>{product.quantity}</td>
                   <td className="d-none d-md-table-cell">{product.subTotal}</td>
                   <td>{order.totalPrice}</td>
-                  <td>{new Date(order.orderedOn).toLocaleString()}</td>
+                  <td>{new Date(order.orderedOn).toLocaleString('en-US')}</td>
                   <td>{order.status}</td>
                 </tr>
               ))

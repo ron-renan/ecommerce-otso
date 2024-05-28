@@ -19,7 +19,7 @@ export default function AdminView({ ProductsData }) {
     const handleProductActivation = (e, productId, isActive) => {
         e.preventDefault();
         const action = isActive ? 'archive' : 'activate';
-        fetch(`http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/products/${productId}/${action}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/products/${productId}/${action}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -64,7 +64,7 @@ export default function AdminView({ ProductsData }) {
         <>
         <Container fluid className="pt-5">
             <h2 className="text-center my-5 text-success">Admin Dashboard</h2>
-            <Table striped bordered hover responsive="md" className="table-fluid">
+            <Table striped bordered hover responsive="md" size="sm" className="table-fluid">
             <thead className="text-center py-5 fs-7 admin-header">
                 <tr>
                     <th className="py-3 text-light d-none d-md-table-cell">ID</th>
@@ -86,12 +86,14 @@ export default function AdminView({ ProductsData }) {
                             {product.isActive ? "Available" : "Unavailable"}
                         </td>
                         <td>
-                            <Button onClick={() => handleEditClick(product)} className="bg-warning text-dark mx-1">Edit</Button>
+                            <Button onClick={() => handleEditClick(product)} 
+                            className="bg-warning text-dark mx-1" size="sm">
+                            Edit</Button>
                         </td>
                         <td>
                             {user.id ? (
                                 <Form onSubmit={(e) => handleProductActivation(e, product._id, product.isActive)}>
-                                    <Button variant={product.isActive ? "success" : "danger"} type="submit">
+                                    <Button variant={product.isActive ? "success" : "danger"} size="sm" type="submit">
                                         {product.isActive ? "Archive" : "Activate"}
                                     </Button>
                                 </Form>

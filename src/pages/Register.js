@@ -28,7 +28,7 @@ export default function Register() {
   function registerUser(e) {
     e.preventDefault();
 
-    fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/users/register' , {
+    fetch(`${process.env.REACT_APP_API_URL}/users/register` , {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -81,13 +81,7 @@ export default function Register() {
             });
         }
       } else {
-        // setFirstName('');
-        // setLastName('');
-        // setEmail('');
-        // setMobileNo('');
-        // setPassword('');
-        // setConfirmPassword('');
-
+        
         clearForm();
         setUser();
 

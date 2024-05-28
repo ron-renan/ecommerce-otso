@@ -17,11 +17,13 @@ export default function AppNavbar() {
 
 
   return (
-    <Navbar expand="lg" fluid className="bg-success fixed-top">
+    <Navbar expand="lg" fluid className="bg-success fixed-top fw-4 fs-6">
       <Container fluid className="mx-5">
-        <Navbar.Brand as={Link} to="/" className="accent ms-5">E-Commerce App</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav" className="mx-5">
+        <Navbar.Brand as={Link} to="/" className="accent ms-5">
+          <h1 className="fs-8 meduim-shadow accent">Otso</h1>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="px-1" />
+        <Navbar.Collapse id="basic-navbar-nav" className="mx-5 pe-5">
           <Nav className="ms-auto">
             {user.id && !user.isAdmin && (
               <Nav.Link as={NavLink} to="/cart" exact="true" className="position-relative accent">

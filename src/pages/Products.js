@@ -10,9 +10,9 @@ export default function Products() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                let url = 'http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/products/active' ;
+                let url = `${process.env.REACT_APP_API_URL}/products/active` ;
                 if (user.isAdmin) {
-                    url = 'http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/products/all';
+                    url = `${process.env.REACT_APP_API_URL}/products/all`;
                 }
                 const response = await fetch(url, {
                     method: 'GET',

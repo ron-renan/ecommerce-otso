@@ -13,7 +13,7 @@ export default function Login() {
     function authenticate(e) {
         // Prevents page redirection via form submission
         e.preventDefault();
-        fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/users/login',{
+        fetch(`${process.env.REACT_APP_API_URL}/users/login`,{
             method: 'POST',
             headers: {
                     "Content-Type": "application/json"
@@ -56,7 +56,7 @@ export default function Login() {
 
 
         const retrieveUserDetails = (token) => {
-                fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/users/details',{
+                fetch(`${process.env.REACT_APP_API_URL}/users/details`,{
                 headers: {
                     "Authorization": `Bearer ${token}`
                     }
@@ -90,8 +90,7 @@ export default function Login() {
                     :
                     <Container className="d-flex justify-content-center align-items-center" style={{ height: '85vh' }}>   
                         <Row>
-                            <Col md={1} x={12}></Col>
-                            <Col md={10} x={12}>
+                            <Col x={12}>
                                 <Form onSubmit={(e) => authenticate(e)} className="border border-1 border-success rounded-2 mt-5">
                                        <h3 className="text-center mt-3 text-success">Login</h3>
                                        <Form.Group controlId="userEmail" className="mt-3 px-5 fw-bolder lh-base fs-7 text-success">
@@ -135,7 +134,6 @@ export default function Login() {
                                    </Form>
 
                             </Col>
-                            <Col md={1} x={12}></Col>
                         </Row>
 
                      

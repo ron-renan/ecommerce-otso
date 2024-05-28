@@ -24,7 +24,7 @@ const getImagePath = (id) => {
 const ImageCard = ({ _id }) => {
   const imagePath = getImagePath(_id);
 
-  return <Card.Img src={imagePath} className="img-fluid" />;
+  return <Card.Img src={imagePath} className="p-2 m-1 img-fluid bordered-image" />;
 };
 
 export default function ProductCard({ productProp }) {

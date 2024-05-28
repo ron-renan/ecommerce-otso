@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { CardGroup } from 'react-bootstrap';
+import { CardGroup, Container, Row, Col } from 'react-bootstrap';
 import ProductCard from './ProductCard';
 
 export default function FeaturedProducts() {
     const [previews, setPreviews] = useState([]);
 
     useEffect(() => {
-        fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/products/active')
+        fetch(`${process.env.REACT_APP_API_URL}/products/active`)
             .then(res => res.json())
             .then(data => {
                 const products = data.products;
@@ -35,7 +35,7 @@ export default function FeaturedProducts() {
 
     return (
         <>
-            <h3 className="text-center mb-4 second">Featured Products</h3>
+            <h3 className="text-center mb-5 second">Featured Products</h3>
             <CardGroup className="justify-content-center">
                 {previews}
             </CardGroup>
