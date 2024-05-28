@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import PlaceOrder from '../pages/PlaceOrder';
 
+
+
 export default function Cart() {
     const { user, cartCount, setCartCount, refreshCartCount } = useContext(UserContext);
     const [cartData, setCartData] = useState([]);
@@ -77,7 +79,7 @@ export default function Cart() {
     useEffect(() => {
         if (products.length && cartData.length) {
             const mappedItems = cartData.map(cartItem => {
-                const product = products.find(product => product._id === cartItem.productId._id);
+                const product = products.find(product => product._id === cartItem.productId);
                 return {
                     ...cartItem,
                     productName: product ? product.name : 'Unknown',
@@ -89,6 +91,8 @@ export default function Cart() {
             setMappedCartItems(mappedItems);
         }
     }, [products, cartData]);
+
+    //console.log("UNA SA LAHAT", mappedCartItems);
 
     useEffect(() => {
         const newTotalPrice = mappedCartItems.reduce((total, item) => {
@@ -113,6 +117,7 @@ export default function Cart() {
     }, [mappedCartItems, selectedItems]);
 
     const handleQuantityChange = (e, productId, initialQty, increment) => {
+        console.log("selected items", productId)
         if (initialQty + increment > 0) {
             setMappedCartItems(prevState =>
                 prevState.map(item =>
@@ -130,6 +135,8 @@ export default function Cart() {
                 ...prevState,
                 [productId]: parseInt(initialQty + increment) > 0
             }));
+
+            console.log("selected items", selectedItems)
             e.preventDefault();
 
             fetch('http://ec2-3-143-236-183.us-east-2.compute.amazonaws.com/b3/cart/updateQuantity', {
@@ -224,6 +231,7 @@ export default function Cart() {
                                     <Row key={item.productId} className="align-items-center my-2 border-bottom ms-3">
                                         <Col md={2} className="text-center pb-3">
                                             <Form.Check
+                                                className="custom-checkbox"
                                                 type="checkbox"
                                                 checked={!!selectedItems[item.productId]}
                                                 onChange={() => handleCheckboxChange(item.productId)}
@@ -261,7 +269,7 @@ export default function Cart() {
                                         <Col md={4} className="text-center py-4">
                                             <Button
                                                 variant="warning"
-                                                onClick={() => removeFromCart(item.productId._id)}
+                                                onClick={() => removeFromCart(item.productId)}
                                             >
                                                 Remove
                                             </Button>
