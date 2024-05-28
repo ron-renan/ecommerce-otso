@@ -18,6 +18,9 @@ body {
 .mb-8{
   margin-bottom: 8rem !important;
 }
+.ms-12{
+  margin-left: 12rem;
+}
 .mb-5{
   margin-bottom: 5rem !important;
 }
@@ -53,14 +56,52 @@ Table th{
 }
 Table thead tr th{
   color: white !important;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 Table tr td{
   color: green !important;
 }
 Table tr:nth-child(even) {
-  background-color: yellow !important;
+  background-color: beige !important;
 }
 Table tr:nth-child(odd) {
-  background-color: yellow !important; /* or any other color */
+  background-color: gray !important; /* or any other color */
+}
+
+.custom-checkbox input[type="checkbox"] {
+    background-color: #CCC; /* Background color when unchecked */
+}
+
+.custom-checkbox input[type="checkbox"]:checked {
+    background-color: #007B43; /* Background color when checked */
+}
+.fs-12{
+  font-size: 5em;
+}
+.fs-9{
+  overflow: visible;
+  margin-top: -3.5rem;
+  margin-left: 5rem;
+}
+.fs-8{
+  white-space: nowrap;
+  overflow: visible;
+  position: absolute;
+  margin-top: -2.2rem;
+  margin-left: 3rem;
+  font-size: 3rem;
+  padding:0;
+}
+.light-shadow {
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+.heavy-shadow {
+  text-shadow: 5px 4px 6px rgba(0, 0, 0, 0.7);
+}
+.meduim-shadow {
+  text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.bordered-image {
+    border: 2px solid #DFDFDF; /* Adjust the border size and color as needed */
 }
