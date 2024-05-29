@@ -81,7 +81,7 @@ Table tr:nth-child(odd) {
 .fs-9{
   overflow: visible;
   margin-top: -3.5rem;
-  margin-left: 5rem;
+  margin-left: 4.5rem;
 }
 .fs-8{
   white-space: nowrap;
@@ -105,3 +105,4 @@ Table tr:nth-child(odd) {
 .bordered-image {
     border: 2px solid #DFDFDF; /* Adjust the border size and color as needed */
 }
+

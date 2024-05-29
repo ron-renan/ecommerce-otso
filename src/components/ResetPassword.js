@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, InputGroup } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
+  const [isActive, setIsActive] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [shownewPassword, setNewShowPassword] = useState(false);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -57,24 +63,34 @@ const ResetPassword = () => {
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="currentPassword">
           <Form.Label>Current Password:</Form.Label>
+          <InputGroup>
           <Form.Control
-            type="password"
+            type={showPassword ? "text" : "password"}
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)}
             required
             // style={{width: "34vw"}}
           />
+          <InputGroup.Text onClick={() => setShowPassword(!showPassword)}>
+              <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+          </InputGroup.Text>
+        </InputGroup>
         </Form.Group>
         <Form.Group controlId="newPassword">
           <Form.Label>New Password:</Form.Label>
-          <Form.Control
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            required
-            // style={{width: "35vw"}}
-          />
-        </Form.Group>
+          <InputGroup>
+            <Form.Control
+              type={shownewPassword ? "text" : "password"}
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              required
+              // style={{width: "35vw"}}
+            />
+            <InputGroup.Text onClick={() => setNewShowPassword(!shownewPassword)}>
+              <FontAwesomeIcon icon={shownewPassword ? faEyeSlash : faEye} />
+            </InputGroup.Text>
+          </InputGroup>
+          </Form.Group>
         <Button className="mt-4" variant="warning" type="submit">
           Reset Password
         </Button>

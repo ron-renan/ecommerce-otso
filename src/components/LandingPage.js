@@ -8,7 +8,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 export default function LandingPage() {
   return (
     <Container fluid style={{height: "100vh"}} >
-      <Row style={{ height: "80vh" }} className="align-items-center mb-5">
+      <Row style={{ height: "100vh" }} className="align-items-center mb-5">
         <Col md={6} className="mb-5 order-1">
           <div className="text-success ms-md-5 mb-5">
             <h1 className="fs-12 heavy-shadow mb-2">Go</h1>
@@ -18,9 +18,9 @@ export default function LandingPage() {
           </div>
         </Col>
         <Col md={6} order--2>
-          <Image src={bgImg} fluid style={{ objectFit: 'cover', width: '100%', height: '100%' }} className="mt-5" />			
+          <Image src={bgImg} fluid style={{ objectFit: 'cover', width: '100%', height: '100%' }} className="mt-5" />      
         </Col>
-      </Row>	
+      </Row>  
     </Container>
   );
 }
