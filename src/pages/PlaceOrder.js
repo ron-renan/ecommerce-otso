@@ -94,7 +94,7 @@ export default function PlaceOrder() {
         if (unselected.length > 0) {
             console.log('Deleting unselected products');
             for (let item of unselected) {
-                await deleteProduct(item.productId._id);
+                await deleteProduct(item.productId);
             }
         }
 
@@ -105,14 +105,14 @@ export default function PlaceOrder() {
         if (orders.length > 0) {
             console.log('Deleting order products');
             for (let item of orders) {
-                await deleteProduct(item.productId._id);
+                await deleteProduct(item.productId);
             }
         }
         // Re-insert unselected products to cart
         if (unselected.length > 0) {
             console.log('Re-inserting unselected products');
             for (let item of unselected) {
-                await insertProduct(item.productId._id, item.quantity);
+                await insertProduct(item.productId, item.quantity);
             }
         }
 
