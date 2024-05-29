@@ -14,7 +14,7 @@ export default function SetUserAsAdmin({ user }) {
                 throw new Error("Unauthorized");
             }
 
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${user._id}/setAsAdmin`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/${user._id}/setAsAdmin`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

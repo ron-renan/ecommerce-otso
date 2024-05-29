@@ -22,7 +22,7 @@ export default function PlaceOrder() {
     const deleteProduct = async (productId) => {
         try {
             console.log(`Deleting product with ID: ${productId}`);
-            await fetch(`${process.env.REACT_APP_API_URL}/cart/${productId}/removeFromCart`, {
+            await fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/${productId}/removeFromCart`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -36,7 +36,7 @@ export default function PlaceOrder() {
     const processOrder = async () => {
         try {
             console.log('Processing order');
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/order/checkout`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/order/checkout`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export default function PlaceOrder() {
     const insertProduct = async (productId, quantity) => {
         try {
             console.log(`Inserting product with ID: ${productId}, Quantity: ${quantity}`);
-            await fetch(`${process.env.REACT_APP_API_URL}/cart/addToCart`, {
+            await fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/addToCart`, {
               method: 'POST',
               headers: {
                 "Content-Type": "application/json",

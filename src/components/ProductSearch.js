@@ -19,7 +19,7 @@ export default function ProductSearch({ onSearch }){
 
     const fetchAllProducts = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/products`);
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/products`);
             const data = await response.json();
             setAllProducts(data.products);
             setFilteredProducts(data.products);

@@ -10,7 +10,7 @@ export default function AddToCart({ addToCartProduct, handleClose, qtyOnHand }) 
     function confirmAddToCart() {
         if (quantity > 0) {
 
-            fetch(`${process.env.REACT_APP_API_URL}/cart/addToCart`, {
+            fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/addToCart`, {
               method: 'POST',
               headers: {
                 "Content-Type": "application/json",

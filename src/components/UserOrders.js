@@ -18,7 +18,7 @@ export default function UserOrders() {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/order/my-orders`, {
+                const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/order/my-orders`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }

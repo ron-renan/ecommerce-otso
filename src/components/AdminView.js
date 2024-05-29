@@ -19,7 +19,7 @@ export default function AdminView({ ProductsData }) {
     const handleProductActivation = (e, productId, isActive) => {
         e.preventDefault();
         const action = isActive ? 'archive' : 'activate';
-        fetch(`${process.env.REACT_APP_API_URL}/products/${productId}/${action}`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/products/${productId}/${action}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

@@ -39,7 +39,7 @@ export default function Cart() {
 
     const fetchCartData = () => {
         if (user && user.id !== null) {
-            fetch(`${process.env.REACT_APP_API_URL}/cart`, {
+            fetch(`${process.env.REACT_APP_API_BASE_URL}/cart`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
@@ -62,7 +62,7 @@ export default function Cart() {
     useEffect(() => {
         fetchCartData();
         if (user && user.id !== null && !user.isAdmin) {
-            fetch(`${process.env.REACT_APP_API_URL}/products/active`)
+            fetch(`${process.env.REACT_APP_API_BASE_URL}/products/active`)
                 .then(res => res.json())
                 .then(results => {
                     setProducts(results.products);
@@ -139,7 +139,7 @@ export default function Cart() {
             console.log("selected items", selectedItems)
             e.preventDefault();
 
-            fetch(`${process.env.REACT_APP_API_URL}/cart/updateQuantity`, {
+            fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/updateQuantity`, {
                 method: 'PATCH',
                 headers: {
                     "Content-Type": "application/json",
@@ -171,7 +171,7 @@ export default function Cart() {
 
         if (result.isConfirmed) {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/cart/${cartId}/removeFromCart`, {
+                const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/${cartId}/removeFromCart`, {
                     method: 'DELETE',
                     headers: {
                         "Content-Type": "application/json",

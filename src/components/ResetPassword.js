@@ -25,7 +25,7 @@ const ResetPassword = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/update-password`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/update-password`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

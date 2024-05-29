@@ -10,7 +10,7 @@ export default function AllOrders() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/order/all-orders`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/order/all-orders`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

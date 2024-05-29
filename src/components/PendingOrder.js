@@ -10,7 +10,7 @@ export default function PendingOrder({pendingData}){
 	
 	const cancelOrder = async (orderId, status) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/order/updateOrderStatus`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/order/updateOrderStatus`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

@@ -15,7 +15,7 @@ export default function ProductView() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/products/${productId}`);
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/products/${productId}`);
         const data = await response.json();
 
         if (response.ok) {

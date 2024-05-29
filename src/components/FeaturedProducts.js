@@ -6,7 +6,7 @@ export default function FeaturedProducts() {
     const [previews, setPreviews] = useState([]);
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/products/active`)
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/products/active`)
             .then(res => res.json())
             .then(data => {
                 const products = data.products;

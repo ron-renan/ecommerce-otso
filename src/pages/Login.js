@@ -16,7 +16,7 @@ export default function Login() {
     function authenticate(e) {
         // Prevents page redirection via form submission
         e.preventDefault();
-        fetch(`${process.env.REACT_APP_API_URL}/users/login`,{
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/users/login`,{
             method: 'POST',
             headers: {
                     "Content-Type": "application/json"
@@ -59,7 +59,7 @@ export default function Login() {
 
 
         const retrieveUserDetails = (token) => {
-                fetch(`${process.env.REACT_APP_API_URL}/users/details`,{
+                fetch(`${process.env.REACT_APP_API_BASE_URL}/users/details`,{
                 headers: {
                     "Authorization": `Bearer ${token}`
                     }
