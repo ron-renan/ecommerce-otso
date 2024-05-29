@@ -7,7 +7,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
 export default function Register() {
-  const { user, setUser } = useContext(UserContext) || { user: {}, setUser: () => {} };
+  const { user, setUser } = useContext(UserContext);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -85,7 +85,7 @@ export default function Register() {
         }
       } else {
         clearForm();
-        setUser(data.user);
+
 
         Swal.fire({
           title: "Registration Successful",
