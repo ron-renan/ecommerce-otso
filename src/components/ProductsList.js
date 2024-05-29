@@ -76,7 +76,7 @@ export default  function ProductsList({ProductsData}){
 		 	<Col md={10} className="mt-3">
             <Row className="mt-5">
                 {filteredProducts.map(product => (
-                    <Col md={4} key={product._id} className="mt-2">
+                    <Col className="wrapper" md={4} key={product._id} className="mt-2">
                         <ProductCard productProp={product} />
                     </Col>
                 ))}
