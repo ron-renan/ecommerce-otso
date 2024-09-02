@@ -7,7 +7,7 @@ import UserContext from '../UserContext';
 export default function PlaceOrder() {
     const location = useLocation();
     const { unselected, orders } = location.state || { unselected: [], orders: [] };
-    const { user, setCartCount, cartCount } = useContext(UserContext);
+    const { user, setCartCount } = useContext(UserContext);
     const [totalPrice, setTotalPrice] = useState(0);
     const navigate = useNavigate();
 

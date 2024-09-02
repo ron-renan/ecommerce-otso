@@ -1,19 +1,16 @@
-import { useEffect, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
 import PendingView from './PendingOrder'
 import CompletedView from './CompletedView'
 
 export default function UserOrders() {
-    const { user, cartCount } = useContext(UserContext);
     const [orderData, setOrderData] = useState([]);
     const [pendingOrders, setPendingOrders ] = useState([]);
     const [completedOrders, setCompletedOrders ] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
+
 
     useEffect(() => {
         const fetchOrders = async () => {

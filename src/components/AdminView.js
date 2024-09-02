@@ -1,4 +1,4 @@
-import { Table, Button, Form, Modal, Container } from 'react-bootstrap';
+import { Row, Col, Table, Button, Form, Modal, Container } from 'react-bootstrap';
 import { useState, useEffect, useContext } from 'react';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
@@ -9,6 +9,7 @@ export default function AdminView({ ProductsData }) {
     const [products, setProducts] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [editingProduct, setEditingProduct] = useState({});
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         if (ProductsData) {
@@ -60,11 +61,30 @@ export default function AdminView({ ProductsData }) {
 
     const handleClose = () => setShowModal(false);
 
+    const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+  // Filter products based on search term
+  const filteredProducts = products.filter(product =>
+    `${product._id}`.includes(searchTerm) || `${product.name}`.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
     return (
         <>
-        <Container fluid className="pt-5">
-            <h2 className="text-center my-5 text-success">Admin Dashboard</h2>
-            <Table striped bordered hover responsive="md" size="sm" className="table-fluid">
+<Container fluid className="pt-3 ">
+<h2 className="text-center mt-5 text-success">Admin Dashboard</h2>
+    <Row>
+    <Col md={{ span: 6, offset: 3 }}>
+      <Form.Control
+        type="text"
+        placeholder="Search product"
+        value={searchTerm}
+        onChange={handleSearchChange}
+      />
+        </Col>
+    </Row> 
+        
+            <Table striped bordered hover responsive="md" size="sm" className="table-fluid mt-2">
             <thead className="text-center py-5 fs-7 admin-header">
                 <tr>
                     <th className="py-3 text-light d-none d-md-table-cell">ID</th>
@@ -76,7 +96,7 @@ export default function AdminView({ ProductsData }) {
                 </tr>
             </thead>
             <tbody className="text-center">
-                {products.map(product => (
+                {filteredProducts.map(product => (
                     <tr key={product._id}>
                         <td className="d-none d-md-table-cell">{product._id}</td>
                         <td>{product.name}</td>

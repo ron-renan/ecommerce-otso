@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Container, Row, Col, Form } from 'react-bootstrap';
 import UserContext from '../UserContext';
 
 export default function AllOrders() {
   const { user } = useContext(UserContext);
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [searchTerm, setSearchTerm] = useState(''); // State for the search term
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -35,9 +35,30 @@ export default function AllOrders() {
     fetchOrders();
   }, [user]);
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+  // Filter orders based on search term
+  const filteredOrders = orders.filter(order =>
+    `${order._id} ${order.userId._id}`.includes(searchTerm)
+  );
+
   return (
-    <div className="mt-5 pt-1">
-      <h4 className="my-3 text-success">All User Orders</h4>
+
+    <Container className="mt-5 pt-1">
+    <h2 className="text-center mt-3 text-success">All User Orders</h2>
+
+      <Row>
+        <Col md={{ span: 6, offset: 3 }} className="my-2">
+          <Form.Control
+            type="text"
+            placeholder="Search users"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        </Col>
+      </Row>
+    
       {isLoading ? (
         <div>Loading...</div>
       ) : (
@@ -50,12 +71,12 @@ export default function AllOrders() {
               <th className="py-3">Qty</th>
               <th className="py-3 text-light d-none d-md-table-cell">Subtotal</th>
               <th className="py-3">Total Price</th>
-              <th className="py-3">Ordered</th>
+              <th className="py-3">Ordered On</th>
               <th className="py-3">Status</th>
             </tr>
           </thead>
           <tbody className="text-center">
-            {orders.map((order) =>
+            {filteredOrders.map((order) =>
               order.productsOrdered.map((product) => (
                 <tr key={`${order._id}-${product.productId._id}`}>
                   <td className="d-none d-md-table-cell">{order._id}</td>
@@ -72,6 +93,7 @@ export default function AllOrders() {
           </tbody>
         </Table>
       )}
-    </div>
+    
+    </Container>
   );
 }

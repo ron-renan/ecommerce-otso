@@ -1,11 +1,11 @@
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { useState, useContext } from 'react';
 import UserContext from '../UserContext';
 import { Link } from 'react-router-dom';
 
 export default function ProductView({ productview, handleClose, qtyOnHand}) {
-    const { user, setUser } = useContext(UserContext);
-    const [ quantity, setQuantity] = useState(qtyOnHand);
+    const { user} = useContext(UserContext);
+    const [ quantity] = useState(qtyOnHand);
 
     return (
         <>

@@ -7,7 +7,6 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
-  const [isActive, setIsActive] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [shownewPassword, setNewShowPassword] = useState(false);
 

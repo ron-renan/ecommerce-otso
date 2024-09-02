@@ -5,12 +5,12 @@ import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import PlaceOrder from '../pages/PlaceOrder';
+
 
 
 
 export default function Cart() {
-    const { user, cartCount, setCartCount, refreshCartCount } = useContext(UserContext);
+    const { user, cartCount, setCartCount } = useContext(UserContext);
     const [cartData, setCartData] = useState([]);
     const [products, setProducts] = useState([]);
     const [mappedCartItems, setMappedCartItems] = useState([]);

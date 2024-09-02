@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
-import { Container, Card, Row, Col, Button } from 'react-bootstrap';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { Container, Card, Row, Col } from 'react-bootstrap';
+import { useParams, Link } from 'react-router-dom';
 import Error from './Error';
 import UserContext from '../UserContext';
 

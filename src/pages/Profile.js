@@ -9,7 +9,7 @@ import UpdateProfile from '../components/UpdateProfile';
 export default function Profile() {
     const { user } = useContext(UserContext);
 
-    const [details, setDetails] = useState({});
+    const [details, setDetails] = useState([]);
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_BASE_URL}/users/details`, {

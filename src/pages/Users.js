@@ -49,9 +49,10 @@ export default function Users() {
   );
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5 pt-1">
+    <h2 className="text-center mt-3 text-success">Users List</h2>
       <Row>
-        <Col md={{ span: 6, offset: 3 }} className="my-5">
+        <Col md={{ span: 6, offset: 3 }} className="my-2">
           <Form.Control
             type="text"
             placeholder="Search users"
